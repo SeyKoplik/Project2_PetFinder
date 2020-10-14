@@ -53,6 +53,8 @@ async function showAnimals(zipCode, animalType, gender, age, size) {
 	//   let idx = (page - 1) * 10;
 	console.log(apiResult.data.animals);
 	console.log(`=======================`)
+
+	
 	  apiResult.data.animals.forEach(function(animal) {
 		console.log(
 		  ` ID: ${animal.id} || Name: ${animal.name} || Gender: ${animal.gender} || Age: ${animal.age} || Size: ${animal.size}`
