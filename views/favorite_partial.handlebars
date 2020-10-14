@@ -1,0 +1,31 @@
+   {{#if favorite}}
+   
+    <div class="card mb-3" style="max-width: 540px;"data-id={{this.id}}>
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <img src={{this.img}} class="card-img" alt="...">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">{{this.name}}</h5>
+                    <div class="row" id="results">
+                    <p class="card-text">
+                        Age: {{this.age}} Gender: {{this.gender}} Breed: {{this.breed}} Size: {{this.size}}</p>
+                        </div> 
+                    <div class="row" id="resultsURL">
+                        <a href={{this.URL}}>More about this animal</a>
+                    </div>
+                    <div class="row" id="userNotes">
+                    <p class="card-notes">
+                        Notes: {{user.notes}}
+                        </p>
+                    </div>
+                    <div class="row" id="buttonArea">
+                    <button class="btn btn-danger float-left update" id={{this.id}}>Update</button>
+                    <button class="btn btn-danger float-right delete"id={{this.id}}>Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/if}}

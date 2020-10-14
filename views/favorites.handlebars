@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/styles/styles.css" media="screen" title="no title" charset="utf-8">
+  <title>Favorites Page</title>
+</head>
+
+<body>
+  {{{body}}}
+</body>
+
+</html>
+<div id="faves">
+  <div class="container">
+    <div class="row">
+      <div class="col-8 offset-2">
+        <h1>{{msg}}</h1>
+        <h2>This is our User Favorites Page!</h2>
+        <h3>Favorites:</h3>
+<div class="container">
+<div class="row">
+    <div class="col-8 offset-2">
+           {{#each animal}}
+          {{>favorite_partial favorite=true}}
+          {{/each}}
+    </div>
+</div>
+<a href="/">← Back To Home</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
