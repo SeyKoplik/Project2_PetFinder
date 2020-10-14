@@ -1,3 +1,23 @@
+$(document).ready(function () { 
+
+$("#searchBtn").on("click", function () {
+  event.preventDefault();
+
+  // CALLING INPUT VALUE TO BE USED
+  const zipcode = $("#zipCode").val().trim();
+  const animalType = $('input[name="petType"]:checked').val();
+  const gender = $('input[name="gender"]:checked').val();
+  const age = $("#selectAge option:selected").text();
+  const size = $("#selectSize option:selected").text();
+
+  // console.log(zipcode, animalType, gender, age, size);
+
+});
+
+}); //=== document.ready ending
+
+
+
 // // Get references to page elements
 // var $exampleText = $("#example-text");
 // var $exampleDescription = $("#example-description");
@@ -97,30 +117,3 @@
 // // Add event listeners to the submit and delete buttons
 // $submitBtn.on("click", handleFormSubmit);
 // $exampleList.on("click", ".delete", handleDeleteBtnClick);
-
-const zip = ${this.}
-async function showAnimals(state, animalType, gender, age, size) {
-  // let page = 1;
-  // do {
-  apiResult = await client.animal.search({
-    location: state,
-    distance: 15,
-    type: animalType,
-    gender: gender,
-    age: age,
-    size: size,
-    page: 1,
-    limit: 10,
-  });
-  //  let idx = (page - 1) * 10;
-  console.log(apiResult.data.animals);
-  console.log(`=======================`);
-  apiResult.data.animals.forEach(function(animal) {
-    console.log(
-      `======= ID: ${animal.id} || Name: ${animal.name} || Gender: ${animal.gender} || Age: ${animal.age} || Size: ${animal.size} || Description: ${animal.description} || Status: ${animal.status} || URL: ${animal.url} || Photos: ${animal.photos} ============== \n`
-    );
-  });
-}
-(async function() {
-  await showAnimals("Philadelphia, PA", "Dog", "Female", "Young", "Medium");
-})();

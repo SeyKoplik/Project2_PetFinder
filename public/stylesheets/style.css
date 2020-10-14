@@ -21,3 +21,7 @@ body {
 .navbar {
   background-color: #005D9A;
 }
+
+.showAllAnimals {
+  display: none;
+}

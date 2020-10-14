@@ -67,5 +67,32 @@ async function showAnimals(zipCode, animalType, gender, age, size) {
 	// );
   }
   (async function() {
-	await showAnimals("19146", "Dog", "Female", "Young", "Medium");
+	await showAnimals();
   })();
+
+
+//===============================
+
+async function showAnimals() {
+  apiResult = await client.animal.search({
+    location: zipcode,
+    distance: 15,
+    type: animalType,
+    gender: gender,
+    age: age,
+    size: size,
+    page: 1,
+    limit: 10,
+  });
+
+  // console.log(apiResult.data.animals);
+  // console.log(`=======================`);
+
+  apiResult.data.animals.forEach(function(animal) {
+    res.render(animal);
+  });
+}
+
+(async function() {
+	await showAnimals();
+})();

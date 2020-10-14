@@ -3,7 +3,6 @@
   <div class="container">
     <div class="row">
       <div class="col-auto offset-2 mx-auto" id="testing">
-
         <h2 style="margin-top:20px">Search For a New Buddy!</h2>
 
         <div class="row offset-1">
@@ -82,7 +81,7 @@
             </div>
 
             <div class="row" style="margin-bottom:20px">
-              <button type="submit" class="btn btn-warning btn-lg mb-2">FIND A FRIEND!</button>
+              <button type="submit" class="btn btn-warning btn-lg mb-2" id="searchBtn">FIND A FRIEND!</button>
             </div>
 
           </form>
@@ -93,9 +92,9 @@
   </div>
 </div>
 
-
-{{#each animal}}
 <div class="row">
+<div class="showAllAnimals">
+{{#each animal}}
     <div class="col-sm-2">
         <center>
             <h6 class="title">Meet {{name}}</h6>
@@ -133,8 +132,8 @@
     </div>
 </div>
 </div>
-<br>
 {{/each}}
+</div>
 </div>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
