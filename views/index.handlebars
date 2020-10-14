@@ -1,5 +1,5 @@
 <div id="home">
-  
+
   <div class="container">
     <div class="row">
       <div class="col-auto offset-2 mx-auto" id="testing">
@@ -12,7 +12,7 @@
             <div class="form-group">
               <p>
                 <strong>Search Area</strong>
-                <input class="form-control" id="" placeholder="Please enter zipcode">
+                <input class="form-control" id="zipCode" placeholder="Please enter zipcode">
               </p>
             </div>
 
@@ -89,14 +89,53 @@
 
         </div>
       </div>
-
     </div>
-
-
-
   </div>
 </div>
 
+
+{{#each animal}}
+<div class="row">
+    <div class="col-sm-2">
+        <center>
+            <h6 class="title">Meet {{name}}</h6>
+        </center>
+    </div>
+    <div id="petInfo">
+        <div class="col-sm-3">
+            <table border="1" width="100%">
+                <tr>
+                    <td class="colOne" id="Type">Type:</td>
+                    <td class="colTwo">{{animal}}</td>
+                </tr>
+                <td class="colOne" id="Name">Name:</td>
+                <td class="colTwo">{{name}}</td>
+                <tr>
+                    <td class="colOne" id="Breed">Breed:</td>
+                    <td class="colTwo">{{breeds}}</td>
+                </tr>
+                <td class="colOne" id="Age">Age:</td>
+                <td class="colTwo">{{age}}</td>
+                </tr>
+                <tr>
+                    <td class="colOne" id="Gender">Gender:</td>
+                    <td class="colTwo">{{gender}}</td>
+                <tr>
+                    <td class="colOne" id="URL">Url:</td>
+                    <td class="colTwo">{{url}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="col-sm-5">
+        <h4 class="title">Description</h4>
+        <p class="text">{{description}}</p>
+    </div>
+</div>
+</div>
+<br>
+{{/each}}
+</div>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/js/index.js"></script>

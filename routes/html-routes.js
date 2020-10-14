@@ -31,14 +31,14 @@ module.exports = function (app) {
 
   // Load index page
   app.get("/members", isAuthenticated, function (req, res) {
-      res.render("index");
+    res.render("index");
 
   });
 
-app.get("/logout", function (req, res) {
-  req.logout();
-  res.redirect("/");
-})
+  app.get("/logout", function (req, res) {
+    req.logout();
+    res.redirect("/");
+  })
 
   // Render 404 page for any unmatched routes
   app.get("*", function (req, res) {
