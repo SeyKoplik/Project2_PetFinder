@@ -1,5 +1,3 @@
-// This is where the bulk of our public js will go since the other public js files are for logging in/signing up.
-
 $(document).ready(() => {
   // This file just does a GET request to figure out which user is logged in
   // and updates the HTML on the page

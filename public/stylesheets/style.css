@@ -1,0 +1,10 @@
+form.signup,
+form.login {
+  margin-top: 50px;
+}
+
+#signUpBox, #logInBox {
+  padding: 10px;
+  background-color: whitesmoke;
+}
+
