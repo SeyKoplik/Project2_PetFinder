@@ -1,16 +1,4 @@
 
-// var petfinder = require("@petfinder/petfinder-js");
-// var client = new petfinder.Client({ apiKey: "", secret: "" });
-// client.animal.search()
-// 	.then(function (response) {
-// 		// Do something with `response.data.animals`
-// 		//console.log(response.data);
-// 		console.log(response.data.animals)
-        
-// 	})
-// 	.catch(function (error) {
-// 		// Handle the error
-// 	});
 
 const db = require("../models");
 const passport = require("../config/passport");
@@ -64,3 +52,23 @@ module.exports = function(app) {
     }
   });
 };
+
+
+var petfinder = require("@petfinder/petfinder-js");
+var client = new petfinder.Client({ apiKey: "yppHbTKVIrEiqdubfjeZfbD9d1jC5RhUu7kYAQBEbJPYCv5LEK", secret: "XG7FgfOXA84t7ab6C9xmfJiTzCroTlPN6WcR8rWv" });
+client.animal.search({
+  location: "08002",
+  distance: "10",
+  type: "dog",
+  size: "small", //OPTIONAL
+  limit: "3" //CHOICE
+}).then(function (response) {
+		// Do something with `response.data.animals`
+		//console.log(response.data);
+    console.log(response.data.animals)
+    res.json(response.data.animals)
+        
+	})
+	.catch(function (error) {
+		// Handle the error
+	});
