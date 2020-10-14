@@ -18,13 +18,13 @@ var client = new petfinder.Client({ apiKey: process.env.PET_FINDER_API_KEY, secr
 // })
 
 // search by zip code
-client.animal.search({
-	location: 19146,
-	distance: 10
-  }).then(resp => {
-	// Do something with resp.data.animals
-	console.log(resp.data)
-  });
+// client.animal.search({
+// 	location: 19146,
+// 	distance: 10
+//   }).then(resp => {
+// 	// Do something with resp.data.animals
+// 	console.log(resp.data)
+//   });
 
 // limit animal search results. See full docs for all available parameters.
 // client.animal.search({
@@ -36,3 +36,34 @@ client.animal.search({
 // 	// Do something with resp.data.animals
 // 	console.log(resp.data.animals)
 //   });
+
+async function showAnimals(zipCode, animalType, gender, age, size) {
+	// let page = 1;
+	// do {
+	  apiResult = await client.animal.search({
+		location: zipCode,
+		distance: 15,
+		type: animalType,
+		gender: gender,
+		age: age,
+		size: size,
+		page: 1,
+		limit: 20,
+	  });
+	//   let idx = (page - 1) * 10;
+	console.log(apiResult.data.animals);
+	console.log(`=======================`)
+	  apiResult.data.animals.forEach(function(animal) {
+		console.log(
+		  ` ID: ${animal.id} || Name: ${animal.name} || Gender: ${animal.gender} || Age: ${animal.age} || Size: ${animal.size}`
+		);
+	  });
+	//   page++;
+	// } while (
+	//   apiResult.data.pagination &&
+	//   apiResult.data.pagination.total_pages >= page
+	// );
+  }
+  (async function() {
+	await showAnimals("19146", "Dog", "Female", "Young", "Medium");
+  })();
