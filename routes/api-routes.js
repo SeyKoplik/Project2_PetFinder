@@ -53,22 +53,27 @@ module.exports = function(app) {
   });
 };
 
-
-var petfinder = require("@petfinder/petfinder-js");
-var client = new petfinder.Client({ apiKey: "yppHbTKVIrEiqdubfjeZfbD9d1jC5RhUu7kYAQBEbJPYCv5LEK", secret: "XG7FgfOXA84t7ab6C9xmfJiTzCroTlPN6WcR8rWv" });
-client.animal.search({
-  location: "08002",
-  distance: "10",
-  type: "dog",
-  size: "small", //OPTIONAL
-  limit: "3" //CHOICE
-}).then(function (response) {
-		// Do something with `response.data.animals`
-		//console.log(response.data);
-    console.log(response.data.animals)
-    res.json(response.data.animals)
-        
-	})
-	.catch(function (error) {
-		// Handle the error
-	});
+async function showAnimals(animalType, searchBreed) {
+  let page = 1;
+  do {
+    apiResult = await client.animal.search({
+      type: animalType,
+      breed: searchBreed,
+      page,
+      limit: 100,
+    });
+    let dogIdx = (page - 1) * 100;
+    apiResult.data.animals.forEach(function(animal) {
+      console.log(
+        ` -- ${++dogIdx}: ${animal.name} id: ${animal.id} age: ${animal.age}`
+      );
+    });
+    page++;
+  } while (
+    apiResult.data.pagination &&
+    apiResult.data.pagination.total_pages >= page
+  );
+}
+(async function() {
+  await showAnimals("Dog", "Alaskan Malamute");
+})();
