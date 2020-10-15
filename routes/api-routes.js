@@ -1,6 +1,9 @@
 // Requiring our models and passport as we've configured it
 const db = require("../models");
 const passport = require("../config/passport");
+require('dotenv').config()
+const petfinder = require("@petfinder/petfinder-js");
+const client = new petfinder.Client({ apiKey: process.env.PET_FINDER_API_KEY, secret: process.env.PET_FINDER_SECRET });
 
 module.exports = function (app) {
   // Using the passport.authenticate middleware with our local strategy.
@@ -30,7 +33,7 @@ module.exports = function (app) {
       });
   });
 
-  // Route for logging user out
+  // Route for logging user out AND REDIRECT TO LOG IN OR SIGN UP PAGE TO GET ACCESS TO PETFINDER
   app.get("/logout", (req, res) => {
     req.logout();
     res.redirect("/");
@@ -52,24 +55,42 @@ module.exports = function (app) {
   });
 
 
-  // // Get all examples
-  // app.get("/api/examples", function (req, res) {
-  //   db.Example.findAll({}).then(function (dbExamples) {
-  //     res.json(dbExamples);
-  //   });
-  // });
+  app.post("/api/search", (req, res) => {
+    client.animal.search({
+        location: req.body.zipcode,
+        distance: 15,
+        type: req.body.animalType,
+        gender: req.body.gender,
+        age: req.body.age,
+        size: req.body.size,
+        page: 1,
+        limit: 3,
+      //change limit when ready.. limit is number of results to appear
+      }).then(petData => {
+    
+      console.log(`=======================`);
+    
+      petData.data.animals.forEach(function(animal) {
+      //  console.log(animal);
+       console.log(animal.name);
+       console.log(animal.gender);
+       console.log(animal.description);
+       console.log(animal.status);
+       let distance = parseInt(animal.distance)
+       let newDistance = distance.toFixed(1);
+       console.log(`${newDistance} miles away`);
+       console.log(animal.breeds.primary);
+      //  console.log(animal.breeds.secondary);
+       console.log(`Mixed breed? ${animal.breeds.mixed}`);
+      //  console.log(animal.breeds.unknown);
+       console.log(animal.url);
+      console.log(`=======================`);
 
-  // // Create a new example
-  // app.post("/api/examples", function (req, res) {
-  //   db.Example.create(req.body).then(function (dbExample) {
-  //     res.json(dbExample);
-  //   });
-  // });
+      });
 
-  // // Delete an example by id
-  // app.delete("/api/examples/:id", function (req, res) {
-  //   db.Example.destroy({ where: { id: req.params.id } }).then(function (dbExample) {
-  //     res.json(dbExample);
-  //   });
-  // });
+      res.json(petData.data.animals);
+
+    })
+  })
+  
 };

@@ -31,22 +31,20 @@ module.exports = function (app) {
 
   // Load index page
   app.get("/members", isAuthenticated, function (req, res) {
-    db.Example.findAll({}).then(function (dbExamples) {
-      res.render("index", {
-        msg: "Welcome!",
-        examples: dbExamples
-      });
-    });
+    // res.render("index");
+    res.sendFile(path.join(__dirname, "../public/main.html"));
   });
 
-  // // Load example page and pass in an example by id
-  // app.get("/example/:id", function (req, res) {
-  //   db.Example.findOne({ where: { id: req.params.id } }).then(function (dbExample) {
-  //     res.render("example", {
-  //       example: dbExample
-  //     });
-  //   });
-  // });
+  // Load favorites page
+  app.get("/favorites", isAuthenticated, function (req, res) {
+    res.sendFile(path.join(__dirname, "../public/favorites.html"));
+  });
+
+  // Logs out user from the email input using passport and then redirects to signup page
+  app.get("/logout", function (req, res) {
+    req.logout();
+    res.redirect("/");
+  })
 
   // Render 404 page for any unmatched routes
   app.get("*", function (req, res) {

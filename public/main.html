@@ -1,12 +1,29 @@
-<div id="home">
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/stylesheets/style.css" media="screen" title="no title" charset="utf-8">
+  <title>Pet Finder App</title>
+</head>
+
+<body>
+  <nav class="navbar navbar-dark">
+    <a class="navbar-brand" href="/logout">
+      Logout
+    </a>
+    <a href="/favorites"><button class="btn btn-outline-warning my-2 my-sm-0" type="submit">My Favorites</button></a>
+  </nav>
 
   <div class="container">
-    <div class="row">
-      <div class="col-auto offset-2 mx-auto" id="testing">
-        <h2 style="margin-top:20px">Search For a New Buddy!</h2>
+    <!--BEGINNING OF DIV CONTAINER-->
+
+    <div class="row searchBox">
+      <div class="col-auto offset-2 mx-auto testing">
+        <h2 style="margin-top:20px">Search for a New Buddy!</h2>
 
         <div class="row offset-1">
-
           <form class="">
             <div class="form-group">
               <p>
@@ -16,7 +33,6 @@
             </div>
 
             <div class="row">
-
               <div class="col-md-6">
                 <p>
                   <strong>Pet Type</strong>
@@ -83,18 +99,43 @@
             <div class="row" style="margin-bottom:20px">
               <button type="submit" class="btn btn-warning btn-lg mb-2" id="searchBtn">FIND A FRIEND!</button>
             </div>
-
           </form>
-
         </div>
       </div>
-    </div>
-  </div>
+    </div> <!-- END OF SEARCH BAR DIVS-->
+
+    <div class="row animalBox">
+       <!--VALUES TO INPUT IS IN RESULTS OF AJAX CALL IN TEST.JS-->
+       <!--BEGINNING OF PET CARD-->
+          <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="https://via.placeholder.com/150" alt="petimage1">
+            <div class="card-body">
+              <h5 class="card-title">Pet Option One NAME</h5>
+              <p class="card-text">Quick description about the pet</p>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Status: {{adoptable??}}</li>
+              <li class="list-group-item">Distance: {{How many miles away}}</li>
+              <li class="list-group-item">Gender: {{Gender}}</li>
+              <li class="list-group-item">Breed: {{breed}}</li>
+              <li class="list-group-item">Mixed Breed? Boolean</li>
+            </ul>
+            <div class="card-body m-auto">
+              <a href="#" class="card-link"><button type="button" class="btn btn-outline-warning btn-sm">ADOPT INFO!</button></a>
+              <a href="#" class="card-link"><button type="button" class="btn btn-outline-danger btn-sm">&hearts;</button></a>
+            </div>
+          </div>  <!--END OF PET CARD -->
+     
+    </div><!-- END OF ANIMALBOX DIVS-->
+
+<!--END OF DIV CONTAINER-->
 </div>
 
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="./js/index.js"></script>
 
-<script src="/js/index.js"></script>
 
-<script type="text/javascript" src="test.js"></script>
+</body>
+
+</html>
