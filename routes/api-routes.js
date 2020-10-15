@@ -64,12 +64,10 @@ module.exports = function (app) {
         age: req.body.age,
         size: req.body.size,
         page: 1,
-        limit: 3,
+        limit: 9,
       //change limit when ready.. limit is number of results to appear
       }).then(petData => {
-    
       console.log(`=======================`);
-    
       petData.data.animals.forEach(function(animal) {
       //  console.log(animal);
        console.log(animal.name);

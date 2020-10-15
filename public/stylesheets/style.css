@@ -25,3 +25,14 @@ div.testing {
 div.animalBox {
   display: none;
 }
+
+.pet-card {
+  width: 250px;
+  height: auto;
+  margin-bottom: 5px;
+}
+
+div.pet-card {
+  display: inline-block;
+  margin-left: 10px;
+}
