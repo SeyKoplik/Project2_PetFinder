@@ -19,6 +19,9 @@ $(document).ready(function () {
     // CONSOLE.LOG TO CHECK VALUES CHOSEN IS CORRECT
     console.log(zipcode, animalType, gender, age, size);
 
+    // (async function() {
+    //   await showAnimals(zipcode, animalType, gender, age, size);
+    // })();
 
   });
 
