@@ -26,12 +26,6 @@ div.animalBox {
   display: none;
 }
 
-/* resize images */
-/* .pet-card img {
-  width: 150px;
-  height: auto;
-} */
-
 .pet-card {
   width: 250px;
   height: auto;

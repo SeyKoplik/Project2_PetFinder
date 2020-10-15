@@ -28,13 +28,12 @@ $(document).ready(function () {
         size: size
       }
     }).then(function (data) {
-      console.log(data);
+      // DATA OUTPUT IS THE RESULT OF PETS COMING OUT OF SEARCH PARAMETERS SET FORTH ABOVE
+      // console.log(data);
 
       for (var i = 0; i < data.length; i++) {
         var petIMGurl = data[i].primary_photo_cropped.small;
         var petName = data[i].name;
-        // var petDescription = data[i].description;
-        // <p class="card-text">${petDescription}</p>
         var petStatus = data[i].status;
         var petDistance = parseInt(data[i].distance);
         var newPetDistance = petDistance.toFixed(1);
@@ -75,10 +74,12 @@ $(document).ready(function () {
         newPetCard.append(newPetPic);
         newPetCard.append(newPetCardBody);
         $(".animalBox").append(newPetCard);
+      }// === END FOR LOOP OF CREATING NEW DIVS FOR EACH PET RESULT
 
-
-      }
     });
-  })
-});
+  }) //==== END OF BUTTON CLICK OF SEARCH FUNCTION
+
+
+
+}); //==== END DOCUMENT.READY
 
