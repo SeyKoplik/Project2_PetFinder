@@ -31,8 +31,8 @@ module.exports = function (app) {
 
   // Load index page
   app.get("/members", isAuthenticated, function (req, res) {
-    res.render("index");
-
+    // res.render("index");
+    res.sendFile(path.join(__dirname, "../public/main.html"));
   });
 
   app.get("/logout", function (req, res) {

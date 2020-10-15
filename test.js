@@ -1,6 +1,8 @@
 require('dotenv').config()
-var petfinder = require("@petfinder/petfinder-js");
-var client = new petfinder.Client({ apiKey: process.env.PET_FINDER_API_KEY, secret: process.env.PET_FINDER_SECRET });
+const petfinder = require("@petfinder/petfinder-js");
+const client = new petfinder.Client({ apiKey: process.env.PET_FINDER_API_KEY, secret: process.env.PET_FINDER_SECRET });
+
+// const search = require('/public/js')
 
 // client.animal.search()
 // 	.then(function (response) {
@@ -11,76 +13,31 @@ var client = new petfinder.Client({ apiKey: process.env.PET_FINDER_API_KEY, secr
 // 		// Handle the error
 // 	});
 
-//search organizations by zipcode
-// client.organization.search({zip:"19146"})
-// .then(response => {
-// 	console.log(response.data);
-// })
-
-// search by zip code
-// client.animal.search({
-// 	location: 19146,
-// 	distance: 10
-//   }).then(resp => {
-// 	// Do something with resp.data.animals
-// 	console.log(resp.data)
-//   });
-
 // limit animal search results. See full docs for all available parameters.
 // client.animal.search({
-// 	type: "Dog",
-// 	breed: "Bernedoodle",
+// 	location: search.zipcode,
+// 	distance: 15,
+// 	type: search.animalType,
+// 	gender: search.gender,
+// 	age: search.age,
+// 	size: search.size,
 // 	page: 1,
-// 	limit: 100,
-//   }).then(resp => {
-// 	// Do something with resp.data.animals
-// 	console.log(resp.data.animals)
+// 	limit: 20,
+//   }).then(petData => {
+// 	// Do something with petData.data.animals
+// 	console.log(petData.data.animals);
 //   });
 
-async function showAnimals(zipCode, animalType, gender, age, size) {
-	// let page = 1;
-	// do {
-	  apiResult = await client.animal.search({
-		location: zipCode,
-		distance: 15,
-		type: animalType,
-		gender: gender,
-		age: age,
-		size: size,
-		page: 1,
-		limit: 20,
-	  });
-	//   let idx = (page - 1) * 10;
-	console.log(apiResult.data.animals);
-	console.log(`=======================`)
-
-	
-	  apiResult.data.animals.forEach(function(animal) {
-		console.log(
-		  ` ID: ${animal.id} || Name: ${animal.name} || Gender: ${animal.gender} || Age: ${animal.age} || Size: ${animal.size}`
-		);
-	  });
-	//   page++;
-	// } while (
-	//   apiResult.data.pagination &&
-	//   apiResult.data.pagination.total_pages >= page
-	// );
-  }
-  (async function() {
-	await showAnimals();
-  })();
-
-
-//===============================
+// //===============================
 
 async function showAnimals() {
   apiResult = await client.animal.search({
-    location: zipcode,
+    location: 19146,
     distance: 15,
-    type: animalType,
-    gender: gender,
-    age: age,
-    size: size,
+    type: "cat",
+    gender: "female",
+    age: "young",
+    size: "small",
     page: 1,
     limit: 10,
   });
@@ -89,7 +46,9 @@ async function showAnimals() {
   // console.log(`=======================`);
 
   apiResult.data.animals.forEach(function(animal) {
-    res.render(animal);
+	// res.render(animal);
+	 console.log(animal);
+     console.log(`=======================`);
   });
 }
 
