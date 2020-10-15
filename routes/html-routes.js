@@ -31,13 +31,19 @@ module.exports = function (app) {
 
   // Load index page
   app.get("/members", isAuthenticated, function (req, res) {
-    db.Example.findAll({}).then(function (dbExamples) {
-      res.render("index", {
-        msg: "Welcome!",
-        examples: dbExamples
-      });
-    });
+    // db.Example.findAll({}).then(function (dbExamples) {
+    //   res.render("index", {
+    //     msg: "Welcome!",
+    //     examples: dbExamples
+    //   });
+    // });
+    res.sendFile(path.join(__dirname, "../public/members.html"))
   });
+
+  // Load favorites page
+  app.get("/favorites", isAuthenticated, function (req, res) {
+    res.sendFile(path.join(__dirname, "../public/favorites.html"))
+  })
 
   // // Load example page and pass in an example by id
   // app.get("/example/:id", function (req, res) {
@@ -49,7 +55,7 @@ module.exports = function (app) {
   // });
 
   // Render 404 page for any unmatched routes
-  app.get("*", function (req, res) {
-    res.render("404");
-  });
+  // app.get("*", function (req, res) {
+  //   res.render("404");
+  // });
 };

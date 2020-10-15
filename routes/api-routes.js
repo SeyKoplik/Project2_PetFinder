@@ -1,22 +1,16 @@
 // Requiring our models and passport as we've configured it
 const db = require("../models");
 const passport = require("../config/passport");
+//const { regexp } = require("sequelize/types/lib/operators");
 
 module.exports = function (app) {
-  // Using the passport.authenticate middleware with our local strategy.
-  // If the user has valid login credentials, send them to the members page.
-  // Otherwise the user will be sent an error
   app.post("/api/login", passport.authenticate("local"), (req, res) => {
-    // Sending back a password, even a hashed password, isn't a good idea
     res.json({
       email: req.user.email,
       id: req.user.id
     });
   });
 
-  // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
-  // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
-  // otherwise send back an error
   app.post("/api/signup", (req, res) => {
     db.User.create({
       email: req.body.email,
@@ -30,14 +24,14 @@ module.exports = function (app) {
       });
   });
 
-  // Route for logging user out
+
   app.get("/logout", (req, res) => {
     req.logout();
     res.redirect("/");
   });
 
   // Route for getting some data about our user to be used client side
-  app.get("/api/user_data", (req, res) => {
+  app.get("/api/user-data", (req, res) => {
     if (!req.user) {
       // The user is not logged in, send back an empty object
       res.json({});
@@ -51,25 +45,58 @@ module.exports = function (app) {
     }
   });
 
+  // Displays favorite info 
+  app.get("/api/favorites", (req, res) => {
+    if (!req.user) {
+      // The user is not logged in, send back an empty object
+      res.json({});
+    } else {
+      db.Pet.findAll({
+        where: {
+          UserId: req.user.id
+        }
+      }).then(function (faves) {
+        console.log(faves)
+        res.json(faves)
+      });
+    }
+  });
 
-  // // Get all examples
-  // app.get("/api/examples", function (req, res) {
-  //   db.Example.findAll({}).then(function (dbExamples) {
-  //     res.json(dbExamples);
-  //   });
-  // });
+  // Creates new favorite
+  app.post("/api/favorites", (req, res) => {
+    db.Pet.create({
+      name: req.body.name,
+      age: req.body.age,
+      gender: req.body.gender,
+      size: req.body.size,
+      url: req.body.url,
+      img: req.body.img,
+      notes: req.body.notes
+    }).then(function (newFave) {
+      res.json(newFave)
+    });
+  });
+  //Update the favorites note
+  app.put("api/favorites", (req, res) => {
+    db.Pet.update({
+      note: req.body.note
+    }, {
+      where: {
+        id: req.body.id
+      }
+    }).then(function (newNote) {
+      res.json(newNote)
+    });
+  });
 
-  // // Create a new example
-  // app.post("/api/examples", function (req, res) {
-  //   db.Example.create(req.body).then(function (dbExample) {
-  //     res.json(dbExample);
-  //   });
-  // });
-
-  // // Delete an example by id
-  // app.delete("/api/examples/:id", function (req, res) {
-  //   db.Example.destroy({ where: { id: req.params.id } }).then(function (dbExample) {
-  //     res.json(dbExample);
-  //   });
-  // });
+  // Delete the favorites note
+  app.delete("/api/favorites/:id", (req, res) => {
+    db.Pet.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function (deletedFave) {
+      res.json(deletedFave);
+    });
+  });
 };
