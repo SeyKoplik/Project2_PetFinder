@@ -31,12 +31,13 @@ $(document).ready(function () {
       console.log(data);
 
       for (var i = 0; i < data.length; i++) {
-        var petIMGurl = data[i].photos[0].small;
+        var petIMGurl = data[i].primary_photo_cropped.small;
         var petName = data[i].name;
-        var petDescription = data[i].description;
+        // var petDescription = data[i].description;
+        // <p class="card-text">${petDescription}</p>
         var petStatus = data[i].status;
         var petDistance = parseInt(data[i].distance);
-        var newPetDistance = petDistance.toFixed(2);
+        var newPetDistance = petDistance.toFixed(1);
         var petGender = data[i].gender;
         var petBreed = data[i].breeds.primary;
         var petMixed = data[i].breeds.mixed;
@@ -49,15 +50,14 @@ $(document).ready(function () {
           petMix = "Nope";
         } else {petMix = "Not sure"}
 
-        var newPetCard = $(`<div class='col-auto card pet-card' id='pet-card-${[i]}'>`);
-        var newPetPic = $(`<img class='card-img-top' id='pet-pic-${[i]}'>`);
+        var newPetCard = $(`<div class='card pet-card' id='pet-card-${[i]}'>`);
+        var newPetPic = $(`<img class='card-img-top img-thumbnail rounded mx-auto d-block' id='pet-pic-${[i]}'>`);
         newPetPic.attr("src", petIMGurl);
 
         var newPetCardBody = $(`<div class='card-body pet-${[i]} pet-card-body'>`);
 
         newPetCardBody.append(`
         <h5 class="card-title">Hello! I'm ${petName}</h5>
-        <p class="card-text">${petDescription}</p>
       </div>
       <ul class="list-group list-group-flush">
         <li class="list-group-item">Status: ${petStatus}</li>

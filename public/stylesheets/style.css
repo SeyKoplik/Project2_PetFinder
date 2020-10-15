@@ -24,20 +24,21 @@ div.testing {
 
 div.animalBox {
   display: none;
-  display: flex; /*set display to flex*/
-  flex-direction: column; /*flex direction colum*/
-  flex-wrap: wrap; /*flex wrap*/
-  align-content: flex-start;
 }
 
 /* resize images */
-.pet-card img {
-  width: 100%;
+/* .pet-card img {
+  width: 150px;
   height: auto;
-}
+} */
 
 .pet-card {
-  width: 18rem;
+  width: 250px;
   height: auto;
   margin-bottom: 5px;
+}
+
+div.pet-card {
+  display: inline-block;
+  margin-left: 10px;
 }
