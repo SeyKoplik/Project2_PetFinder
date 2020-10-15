@@ -30,7 +30,7 @@ module.exports = function (app) {
       });
   });
 
-  // Route for logging user out
+  // Route for logging user out AND REDIRECT TO LOG IN OR SIGN UP PAGE TO GET ACCESS TO PETFINDER
   app.get("/logout", (req, res) => {
     req.logout();
     res.redirect("/");
@@ -50,4 +50,7 @@ module.exports = function (app) {
       });
     }
   });
+
+
+  
 };

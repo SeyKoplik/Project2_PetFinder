@@ -35,6 +35,12 @@ module.exports = function (app) {
     res.sendFile(path.join(__dirname, "../public/main.html"));
   });
 
+  // Load favorites page
+  app.get("/favorites", isAuthenticated, function (req, res) {
+    res.sendFile(path.join(__dirname, "../public/favorites.html"));
+  });
+
+  // Logs out user from the email input using passport and then redirects to signup page
   app.get("/logout", function (req, res) {
     req.logout();
     res.redirect("/");

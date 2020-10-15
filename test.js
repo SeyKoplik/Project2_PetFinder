@@ -19,6 +19,21 @@ const client = new petfinder.Client({ apiKey: process.env.PET_FINDER_API_KEY, se
 // 	console.log(petData.data.animals);
 //   });
 
+// client.organization.search({
+// 	location: 19146,
+// 	distance: 10,
+// 	limit: 3
+// })
+//   .then(resp => {
+// 	// Do something with resp.data.organizations
+// 	(resp.data.organizations).forEach(function(orgs) {
+// 		// console.log(orgs.name);
+// 		// console.log(orgs.distance);
+// 		console.log(`==============`);
+// 		console.log(orgs);
+// 	})
+//   });
+
 // //===============================
 
 const newPage = Math.floor(Math.random() * 5) + 1;
@@ -29,29 +44,31 @@ async function showAnimals() {
   apiResult = await client.animal.search({
     location: 19146,
     distance: 15,
-    type: "cat",
+    type: "dog",
     gender: "female",
     age: "young",
     size: "medium",
     page: newPage,
-	limit: 5,
+	limit: 1,
 	//change limit when ready.. limit is number of results to appear
   });
 
-  // console.log(apiResult.data.animals);
-  // console.log(`=======================`);
+  console.log(apiResult.data.animals);
+  console.log(`=======================`);
 
   apiResult.data.animals.forEach(function(animal) {
-	 console.log(animal.name);
-	 console.log(animal.description);
-	 console.log(animal.status);
-	 let distance = parseInt(animal.distance)
-	 let newDistance = distance.toFixed(1);
-	 console.log(`${newDistance} miles away`);
-	 console.log(animal.breeds.primary);
-	//  console.log(animal.breeds.secondary);
-	 console.log(`Mixed breed? ${animal.breeds.mixed}`);
-	//  console.log(animal.breeds.unknown);
+	 console.log(animal);
+	//  console.log(animal.name);
+	//  console.log(animal.description);
+	//  console.log(animal.status);
+	//  let distance = parseInt(animal.distance)
+	//  let newDistance = distance.toFixed(1);
+	//  console.log(`${newDistance} miles away`);
+	//  console.log(animal.breeds.primary);
+	// //  console.log(animal.breeds.secondary);
+	//  console.log(`Mixed breed? ${animal.breeds.mixed}`);
+	// //  console.log(animal.breeds.unknown);
+	//  console.log(animal.url);
      console.log(`=======================`);
   });
 }
