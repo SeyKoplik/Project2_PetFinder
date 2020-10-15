@@ -1,34 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-  <title>Passport Authentication</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css">
-  <link href="stylesheets/style.css" rel="stylesheet">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/stylesheets/style.css" media="screen" title="no title" charset="utf-8">
+  <title>Pet Finder App</title>
 </head>
 
 <body>
-  <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="/logout">
-        Logout
-      </a>
-    </div>
-  </div>
-</nav>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6 col-md-offset-3">
-        <h2>Welcome <span class="pet-name"></span></h2>
-      </div>
-    </div>
-  </div>
+  <nav class="navbar navbar-dark">
+    <a class="navbar-brand" href="/logout">
+      Logout
+    </a>
+    <a href="/favorites"><button class="btn btn-outline-warning my-2 my-sm-0" type="submit">My Favorites</button></a>
+  </nav>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script type="text/javascript" src="js/favorites.js"></script>
+<div class="card mb-3" style="max-width: 540px;" data-id={{this.id}}>
+    <div class="row no-gutters">
+        <div class="col-md-4">
+            <img src={{this.img}} class="card-img" alt="...">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title">{{this.name}}</h5>
+                <div class="row" id="results">
+                    <p class="card-text">
+                        Age: {{this.age}} Gender: {{this.gender}} Breed: {{this.breed}} Size: {{this.size}}</p>
+                </div>
+                <div class="row" id="resultsURL">
+                    <a href={{this.URL}}>More about this animal</a>
+                </div>
+                <div class="row" id="userNotes">
+                    <p class="card-notes">
+                        Notes: {{user.notes}}
+                    </p>
+                </div>
+                <div class="row" id="buttonArea">
+                    <button class="btn btn-danger float-left update" id={{this.id}}>Update</button>
+                    <button class="btn btn-danger float-right delete" id={{this.id}}>Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script type="text/javascript" src="js/favorites.js"></script>
 
 </body>
 

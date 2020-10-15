@@ -1,9 +1,20 @@
+<<<<<<< HEAD:config/config.json
 
 {
   "development": {
     "username": "root",
     "password": "",
     "database": "pets_db",
+=======
+require('dotenv').config();
+
+module.exports = 
+{
+  "development": {
+    "username": "root",
+    "password": process.env.MYSQL_PASS,
+    "database": "passport_demo",
+>>>>>>> b72adadfefe1d6c24e70a22e4ccbc3215851cf5f:config/config.js
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
@@ -19,3 +30,4 @@
     "dialect": "mysql"
   }
 }
+
