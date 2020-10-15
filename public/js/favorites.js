@@ -1,6 +1,6 @@
-// Working with main.html file in public folder
+// Working with favorites.html file in public folder
 $(document).ready(function () {
-
+//TO PULL THE DATE FROM THE MYSQL DATABASE AND RENDER IT ON THE FAVORITES PAGE.
     $.ajax({
         url: '/api/favorites/' , method: 'GET' //need to get user_id from passport to put at end of url stmt before comma 
       }).then(function (data) {
@@ -57,6 +57,24 @@ $(document).ready(function () {
           $(".animalBox").append(newPetCard);
         }// === END FOR LOOP OF CREATING NEW DIVS FOR EACH PET RESULT
   
-      });
+      });//END OF GETTING DATA FROM DATABASE AND RENDERING IT ON THE FAVORITES PAGE.
+
+
+
+//UPDATING THE DATABASE WITH NOTES ADDED BY USER ON FAVORITES PAGE.
+// $.ajax({
+//   url: '/api/favorites/' , method: 'PUT' //need to get user_id from passport to put at end of url stmt before comma 
+// }).then(function (data) {
+  // DATA OUTPUT IS THE RESULT OF MYSQL DATABASE INFORMATION
+  // console.log(data);
+
+
+  //DELETING ITEMS FROM THE DATABASE WHEN CHOSEN FOR DELETE BY USER ON FAVORITES PAGE.
+// $.ajax({
+//   url: '/api/favorites/' , method: '' //need to get user_id from passport to put at end of url stmt before comma 
+// }).then(function (data) {
+//   // DATA OUTPUT IS THE RESULT OF MYSQL DATABASE INFORMATION
+//   console.log(data);
+
 }); //==== END DOCUMENT.READY
 
