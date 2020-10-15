@@ -1,0 +1,29 @@
+body,
+html {
+  margin-bottom: 100px;
+  height: 100%;
+  background-image: url("../petPattern.png");
+}
+.card {
+  margin-top: 50px;
+  margin-bottom: 150px;
+}
+.card-body {
+  margin-top: 20px;
+}
+.chosen-container,
+.form-control {
+  margin-bottom: 20px !important;
+  width: 50% !important;
+}
+.survey-title {
+  text-align: center;
+}
+p,
+label {
+  font-size: 17px;
+}
+#survey-submit {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}

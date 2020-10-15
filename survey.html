@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title> Dog Survey</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+        integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.css">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:300" rel="stylesheet">
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars fa-2x"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="public/members.html">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="pets.html">Pets</a>
+                </li>
+            </ul>
+            <span class="navbar-text">
+                <a class="logout-link" href="public/signup.html">Logout</a>
+            </span>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="card">
+
+            <div class="card-body">
+
+                <h1 class="survey-title"><strong>Breed Matcher Survey</strong></h1>
+                <div class="d-flex justify-content-center">
+                    <img class="img-fluid" src="#">
+                </div>
+                <hr style="margin-top:-30px">
+
+                <label for="name"><strong>About you:</strong> What's your name?</label>
+                <input type="text" id="survey-name" class="form-control" required>
+
+                <p><strong>Activity level: </strong>How active would you consider your day-to-day lifestyle?</p>
+                <select class="chosen-select" id="survey-activity">
+                    <option value=""></option>
+                    <option value="1">Couch potato</option>
+                    <option value="2">Calm</option>
+                    <option value="3">Exercise regularly</option>
+                    <option value="4">Energetic</option>
+                    <option value="5">Always active</option>
+                </select>
+
+                <p><strong>Barking: </strong>How much barking can you tolerate?</p>
+                <select class="chosen-select" id="survey-barking">
+                    <option value=""></option>
+                    <option value="1">Little to none</option>
+                    <option value="2">When necessary</option>
+                    <option value="3">Occasional</option>
+                    <option value="4">No problem with vocal dogs</option>
+                    <option value="5">I like barkers</option>
+                </select>
+
+                <p><strong>Family life: </strong>Do you have kids?</p>
+                <select class="chosen-select" id="survey-kids">
+                    <option value=""></option>
+                    <option value="1">Nope!</option>
+                    <option value="2">Yes - under 10 years old only</option>
+                    <option value="3">Yes - over 10 years old only</option>
+                    <option value="4">Yes - mixed bag of ages, but supervised</option>
+                    <option value="5">Yes - the dog must be good with all kids</option>
+                </select>
+
+                <p><strong>Family life: </strong>Do you have other dogs</p>
+                <select class="chosen-select" id="survey-dogs">
+                    <option value=""></option>
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+
+                <p><strong>Training: </strong>How much time do you have to train a dog?</p>
+                <select class="chosen-select" id="survey-training">
+                    <option value=""></option>
+                    <option value="1">Very little.</option>
+                    <option value="2">I have some time, but would still prefer a dog that's easy to train.</option>
+                    <option value="3">I have time to train a dog!</option>
+                    <option value="4">I have plenty of time and am willing to put in a little extra work</option>
+                    <option value="5">I have as much time as necessary.</option>
+                </select>
+
+                <p><strong>Shedding: </strong>How do you feel about dog hair all over the place?</p>
+                <select class="chosen-select" id="survey-shedding">
+                    <option value=""></option>
+                    <option value="1">I hate dog hair...I'd prefer little or no shedding</option>
+                    <option value="2">I can handle it and i understand some dogs shed in seasons.</option>
+                    <option value="3">Occasional shedding doesn't bother me.</option>
+                    <option value="4">I can handle dog hair - just not like, a ton.</option>
+                    <option value="5">Whatever - I can deal with frequent shedding.</option>
+                </select>
+
+                <p><strong>Size: </strong>What size dog would you prefer?</p>
+                <select class="chosen-select" id="survey-size">
+                    <option value=""></option>
+                    <option value="1">X-Small</option>
+                    <option value="2">Small</option>
+                    <option value="3">Medium</option>
+                    <option value="4">Large</option>
+                    <option value="5">X-Large</option>
+                </select>
+
+                <p><strong>Allergies: </strong>Do you or your family members have allergies?</p>
+                <select class="chosen-select" id="survey-allergies">
+                    <option value=""></option>
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+
+                <div id="invalid-alert">
+                    <!-- Insert jQuery -->
+                </div>
+                <!-- ========= Submit Survey ========== -->
+                <!-- ================================== -->
+                <button type="submit" class="btn btn-info btn-lg btn-block" id="survey-submit">
+                    <i class="fa fa-check-circle" aria-hidden="true"></i>
+                    Match me with a breed!
+                </button>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
+        integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript"
+        src="https://maps.google.com/maps/api/js?key=AIzaSyBWUFckzGG14s23wD22T4ydSILQQaXFc5s"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.jquery.min.js"></script>
+    <script src="chosen.js"></script>
+    <script src="survey-page.js"></script>
+</body>
+
+</html>

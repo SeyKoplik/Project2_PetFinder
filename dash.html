@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>The Barking Lot | Welcome</title>
+    <link rel="icon" href="images/favicon.png" type="image/x-icon" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+        integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+        integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.css">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:300" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <link rel="stylesheet" type="text/css" href="css/dash.css" />
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars fa-2x"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="pets.html">Pets</a>
+                </li>
+            </ul>
+            <span class="navbar-text">
+                <a class="logout-link" href="/logout">Logout</a>
+            </span>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <div class="card">
+
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <h1 class="display-4">Welcome!</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="d-flex justify-content-center">
+                            <img class="welcome-pic" src="/images/welcome.png">
+                        </div>
+                    </div>
+                </div>
+                <hr style="margin-top:-30px">
+
+                <div class="row" id="options-row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-5 col-sm-12">
+                        <div class="d-flex justify-content-center">
+                            <h5>If you know what you want and you are ready to search for a dog, click the button below!
+                            </h5>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <a href="pets.html"><button type="button" class="btn btn-outline-info">Find a
+                                    Pet</button></a>
+                        </div>
+                    </div>
+
+                    <div class="col-md-5 col-sm-12">
+                        <div class="d-flex justify-content-center">
+                            <h5>If you're not sure what kind of dog you'd like, click the button below to take our breed
+                                matcher survey!</h5>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <a href="/survey.html"><button type="button" id="survey-button"
+                                    class="btn btn-outline-info">Take
+                                    the Survey!</button></a>
+                        </div>
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <nav class="navbar fixed-bottom navbar-light bg-light text-center">
+            <div class="container text-center">
+                <h5 class="col-md-12 col-sm-12 col-xs-12"><a class="footer" href="/">The Barking Lot</a></h5>
+            </div>
+        </nav>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+        integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+        integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.jquery.min.js"></script>
+</body>
+
+</html>
