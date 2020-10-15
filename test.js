@@ -2,7 +2,7 @@ require('dotenv').config()
 const petfinder = require("@petfinder/petfinder-js");
 const client = new petfinder.Client({ apiKey: process.env.PET_FINDER_API_KEY, secret: process.env.PET_FINDER_SECRET });
 
-const search = require('/public/js')
+// const search = require('/public/js/')
 
 // limit animal search results. See full docs for all available parameters.
 // client.animal.search({

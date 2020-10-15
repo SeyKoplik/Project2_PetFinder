@@ -19,18 +19,28 @@ $(document).ready(function () {
     // CONSOLE.LOG TO CHECK VALUES CHOSEN IS CORRECT
     console.log(zipcode, animalType, gender, age, size);
 
-    // (async function() {
-    //   await showAnimals(zipcode, animalType, gender, age, size);
-    // })();
+    $.ajax({url:'/api/search', method:'POST', data: {
+      zipcode: zipcode,
+      animalType: animalType,
+      gender: gender,
+      age: age,
+      size: size
+    }}).then (function (data){
+      console.log(data);
 
+        for(var i = 0; i < data.length; i++) {
+          var petName = data[i].name;
+          var petIMGurl = data[i].primary_photo_cropped.small
+
+           var newCard = $('<div class="card" style="width:18rem;">');
+           var newIMG = $('<img class="card-img-top" src="" alt="petimage">');
+
+
+           $(".animalBox").append(newCard);
+           newCard.text(data[i].name);
+
+        }
+     });
+    })
   });
 
-});
-
-module.exports = { 
-  zipcode, 
-  animalType,
-  gender,
-  age,
-  size 
-}
