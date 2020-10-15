@@ -24,4 +24,20 @@ div.testing {
 
 div.animalBox {
   display: none;
+  display: flex; /*set display to flex*/
+  flex-direction: column; /*flex direction colum*/
+  flex-wrap: wrap; /*flex wrap*/
+  align-content: flex-start;
+}
+
+/* resize images */
+.pet-card img {
+  width: 100%;
+  height: auto;
+}
+
+.pet-card {
+  width: 18rem;
+  height: auto;
+  margin-bottom: 5px;
 }
