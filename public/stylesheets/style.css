@@ -8,3 +8,20 @@ form.login {
   background-color: whitesmoke;
 }
 
+body {
+  background-image: url('../img/petPattern.png');
+}
+
+div.testing {
+  border: 1px solid black;
+  margin-top: 10px;
+  background-color: #008AE6
+}
+
+.navbar {
+  background-color: #005D9A;
+}
+
+div.animalBox {
+  display: none;
+}
