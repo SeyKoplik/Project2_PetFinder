@@ -10,7 +10,7 @@ module.exports = function (app) {
   app.get("/", (req, res) => {
     // If the user already has an account send them to the members page
     if (req.user) {
-      res.redirect("/members");
+      res.redirect("/main");
     }
     res.sendFile(path.join(__dirname, "../public/signup.html"));
   });
@@ -18,7 +18,7 @@ module.exports = function (app) {
   app.get("/login", (req, res) => {
     // If the user already has an account send them to the members page
     if (req.user) {
-      res.redirect("/members");
+      res.redirect("/main");
     }
     res.sendFile(path.join(__dirname, "../public/login.html"));
   });
@@ -37,7 +37,7 @@ module.exports = function (app) {
 
   // Load favorites page
   app.get("/favorites", isAuthenticated, function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/favorites.html"));
+    res.sendFile(path.join(__dirname, "../public/favorites.html"))
   });
 
   // Logs out user from the email input using passport and then redirects to signup page
@@ -47,7 +47,7 @@ module.exports = function (app) {
   })
 
   // Render 404 page for any unmatched routes
-  app.get("*", function (req, res) {
-    res.render("404");
-  });
+  // app.get("*", function (req, res) {
+  //   res.render("404");
+  // });
 };
