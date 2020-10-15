@@ -1,13 +1,12 @@
+require('dotenv').config()
+
 // Requiring our models and passport as we've configured it
 const db = require("../models");
 const passport = require("../config/passport");
-<<<<<<< HEAD
-//const { regexp } = require("sequelize/types/lib/operators");
-=======
-require('dotenv').config()
-const petfinder = require("@petfinder/petfinder-js");
-const client = new petfinder.Client({ apiKey: process.env.PET_FINDER_API_KEY, secret: process.env.PET_FINDER_SECRET });
->>>>>>> b72adadfefe1d6c24e70a22e4ccbc3215851cf5f
+
+var petfinder = require("@petfinder/petfinder-js");
+var client = new petfinder.Client({ apiKey: process.env.PET_FINDER_API_KEY, secret: process.env.PET_FINDER_SECRET });
+
 
 module.exports = function (app) {
   app.post("/api/login", passport.authenticate("local"), (req, res) => {
@@ -30,11 +29,7 @@ module.exports = function (app) {
       });
   });
 
-<<<<<<< HEAD
 
-=======
-  // Route for logging user out AND REDIRECT TO LOG IN OR SIGN UP PAGE TO GET ACCESS TO PETFINDER
->>>>>>> b72adadfefe1d6c24e70a22e4ccbc3215851cf5f
   app.get("/logout", (req, res) => {
     req.logout();
     res.redirect("/");
@@ -72,7 +67,6 @@ module.exports = function (app) {
     }
   });
 
-<<<<<<< HEAD
   // Creates new favorite
   app.post("/api/favorites", (req, res) => {
     db.Pet.create({
@@ -110,7 +104,7 @@ module.exports = function (app) {
       res.json(deletedFave);
     });
   });
-=======
+
   app.post("/api/search", (req, res) => {
     client.animal.search({
         location: req.body.zipcode,
@@ -120,12 +114,10 @@ module.exports = function (app) {
         age: req.body.age,
         size: req.body.size,
         page: 1,
-        limit: 3,
+        limit: 9,
       //change limit when ready.. limit is number of results to appear
       }).then(petData => {
-    
       console.log(`=======================`);
-    
       petData.data.animals.forEach(function(animal) {
       //  console.log(animal);
        console.log(animal.name);
@@ -149,5 +141,4 @@ module.exports = function (app) {
     })
   })
   
->>>>>>> b72adadfefe1d6c24e70a22e4ccbc3215851cf5f
 };
