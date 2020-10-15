@@ -109,27 +109,31 @@
           <div class="card" style="width: 18rem;">
             <img class="card-img-top" src="https://via.placeholder.com/150" alt="petimage1">
             <div class="card-body">
+              <!--VALUES TO INPUT IS IN RESULTS OF AJAX CALL IN TEST.JS-->
               <h5 class="card-title">Pet Option One NAME</h5>
               <p class="card-text">Quick description about the pet</p>
             </div>
             <ul class="list-group list-group-flush">
               <li class="list-group-item">Status: {{adoptable??}}</li>
               <li class="list-group-item">Distance: {{How many miles away}}</li>
-              <li class="list-group-item">Breeds: {{breed}}</li>
+              <li class="list-group-item">Breed: {{breed}}</li>
+              <li class="list-group-item">Mixed Breed? Boolean</li>
             </ul>
             <div class="card-body">
               <a href="#" class="card-link"><button type="button" class="btn btn-outline-warning btn-sm">ADOPT INFO!</button></a>
               <a href="#" class="card-link"><button type="button" class="btn btn-outline-danger btn-sm">ADD TO FAVE</button></a>
             </div>
           </div><!--END OF CARD-->
-
      
     </div><!-- END OF ANIMALBOX DIVS-->
 
 <!--END OF DIV CONTAINER-->
 </div>
+
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
   <script type="text/javascript" src="./js/index.js"></script>
+  <script type="text/javascript" src="test.js"></script>
 
 </body>
 

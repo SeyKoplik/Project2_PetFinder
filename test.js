@@ -4,15 +4,6 @@ const client = new petfinder.Client({ apiKey: process.env.PET_FINDER_API_KEY, se
 
 // const search = require('/public/js')
 
-// client.animal.search()
-// 	.then(function (response) {
-// 		// Do something with `response.data.animals`
-// 		console.log(response.data.animals[1]);
-// 	})
-// 	.catch(function (error) {
-// 		// Handle the error
-// 	});
-
 // limit animal search results. See full docs for all available parameters.
 // client.animal.search({
 // 	location: search.zipcode,
@@ -30,6 +21,10 @@ const client = new petfinder.Client({ apiKey: process.env.PET_FINDER_API_KEY, se
 
 // //===============================
 
+const newPage = Math.floor(Math.random() * 5) + 1;
+console.log(newPage);
+parseInt(newPage);
+
 async function showAnimals() {
   apiResult = await client.animal.search({
     location: 19146,
@@ -37,17 +32,26 @@ async function showAnimals() {
     type: "cat",
     gender: "female",
     age: "young",
-    size: "small",
-    page: 1,
-    limit: 10,
+    size: "medium",
+    page: newPage,
+	limit: 5,
+	//change limit when ready.. limit is number of results to appear
   });
 
   // console.log(apiResult.data.animals);
   // console.log(`=======================`);
 
   apiResult.data.animals.forEach(function(animal) {
-	// res.render(animal);
-	 console.log(animal);
+	 console.log(animal.name);
+	 console.log(animal.description);
+	 console.log(animal.status);
+	 let distance = parseInt(animal.distance)
+	 let newDistance = distance.toFixed(1);
+	 console.log(`${newDistance} miles away`);
+	 console.log(animal.breeds.primary);
+	//  console.log(animal.breeds.secondary);
+	 console.log(`Mixed breed? ${animal.breeds.mixed}`);
+	//  console.log(animal.breeds.unknown);
      console.log(`=======================`);
   });
 }
