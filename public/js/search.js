@@ -53,7 +53,7 @@ $(document).ready(function () {
         var newPetPic = $(`<img class='card-img-top img-thumbnail rounded mx-auto d-block' id='pet-pic-${[i]}'>`);
         newPetPic.attr("src", petIMGurl);
 
-        var newPetCardBody = $(`<div class='card-body pet-${[i]} pet-card-body'>`);
+        var newPetCardBody = $(`<div class='card-body h-100 pet-${[i]} pet-card-body'>`);
 
         newPetCardBody.append(`
         <h5 class="card-title">Hello! I'm ${petName}</h5>
