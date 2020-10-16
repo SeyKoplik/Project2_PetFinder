@@ -99,3 +99,4 @@ $.ajax({
 //     console.log("1 record inserted");
 //   });
  })
+

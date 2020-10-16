@@ -1,7 +1,5 @@
-
 //===!!!!! add when adding dotenv
 // require("dotenv").config();
-
 
 // Requiring necessary npm packages
 const express = require("express");
@@ -30,13 +28,12 @@ var exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-
 // Requiring our routes
 require("./routes/html-routes.js")(app);
 require("./routes/api-routes.js")(app);
 
 // Syncing our database and logging a message to the user upon success
-db.sequelize.sync().then(() => {
+db.sequelize.sync({}).then(() => {
   app.listen(PORT, () => {
     console.log(
       "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
@@ -45,3 +42,8 @@ db.sequelize.sync().then(() => {
     );
   });
 });
+
+/*API KEY
+7582194e107a16e1749aefa7f31faf84-us2
+*/
+// List id   e93bb7ad7b
