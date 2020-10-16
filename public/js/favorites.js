@@ -19,6 +19,7 @@ $(document).ready(function () {
       var petBreed = data[i].breed;
       var petSize = data[i].size;
       var petWebLink = data[i].url;
+      var userNotes = data[i].notes;
 
       var newPetCard = $(`<div class='card pet-card' id='pet-card-${[i]}'>`);
       var newPetPic = $(`<img class='card-img-top img-thumbnail rounded mx-auto d-block' id='pet-pic-${[i]}'>`);
@@ -36,7 +37,7 @@ $(document).ready(function () {
         </ul>
         <div class="card-body m-auto">
         <h5 class="notes-title">My Notes for ${petName}:</h5>
-        <div class="notes-area"><textarea></textarea></div>
+        <div class="notes-area"><textarea>${userNotes}</textarea></div>
         <div class="card-body m-auto">
           <a href="${petWebLink}" class="card-link"><button type="button" class="btn btn-outline-warning btn-sm">ADOPT INFO!</button></a>
           <button type="button" class="btn btn-outline-danger btn-sm update" data-id="${petID}">Update</button>
