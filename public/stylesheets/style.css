@@ -3,23 +3,24 @@ form.login {
   margin-top: 50px;
 }
 
-#signUpBox, #logInBox {
+#signUpBox,
+#logInBox {
   padding: 10px;
   background-color: whitesmoke;
 }
 
 body {
-  background-image: url('../img/petPattern.png');
+  background-image: url("../img/petPattern.png");
 }
 
 div.testing {
   border: 1px solid black;
   margin-top: 10px;
-  background-color: #008AE6
+  background-color: #008ae6;
 }
 
 .navbar {
-  background-color: #005D9A;
+  background-color: #005d9a;
 }
 
 div.animalBox {

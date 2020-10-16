@@ -1,6 +1,9 @@
-require('dotenv').config()
+require("dotenv").config();
 const petfinder = require("@petfinder/petfinder-js");
-const client = new petfinder.Client({ apiKey: process.env.PET_FINDER_API_KEY, secret: process.env.PET_FINDER_SECRET });
+const client = new petfinder.Client({
+  apiKey: process.env.PET_FINDER_API_KEY,
+  secret: process.env.PET_FINDER_SECRET,
+});
 
 // const search = require('/public/js/')
 
@@ -49,31 +52,31 @@ async function showAnimals() {
     age: search.age,
     size: search.size,
     page: 1,
-	limit: 3,
-	//change limit when ready.. limit is number of results to appear
+    limit: 3,
+    //change limit when ready.. limit is number of results to appear
   });
 
-//   console.log(apiResult.data.animals);
+  //   console.log(apiResult.data.animals);
   console.log(`=======================`);
 
   apiResult.data.animals.forEach(function(animal) {
-	//  console.log(animal);
-	 console.log(animal.name);
-	 console.log(animal.gender);
-	 console.log(animal.description);
-	 console.log(animal.status);
-	 let distance = parseInt(animal.distance)
-	 let newDistance = distance.toFixed(1);
-	 console.log(`${newDistance} miles away`);
-	 console.log(animal.breeds.primary);
-	//  console.log(animal.breeds.secondary);
-	 console.log(`Mixed breed? ${animal.breeds.mixed}`);
-	//  console.log(animal.breeds.unknown);
-	 console.log(animal.url);
-     console.log(`=======================`);
+    //  console.log(animal);
+    console.log(animal.name);
+    console.log(animal.gender);
+    console.log(animal.description);
+    console.log(animal.status);
+    let distance = parseInt(animal.distance);
+    let newDistance = distance.toFixed(1);
+    console.log(`${newDistance} miles away`);
+    console.log(animal.breeds.primary);
+    //  console.log(animal.breeds.secondary);
+    console.log(`Mixed breed? ${animal.breeds.mixed}`);
+    //  console.log(animal.breeds.unknown);
+    console.log(animal.url);
+    console.log(`=======================`);
   });
 }
 
 (async function() {
-	await showAnimals();
+  await showAnimals();
 })();
