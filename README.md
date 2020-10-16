@@ -95,3 +95,7 @@
 - [Donna Engelberger \_ GitHub Profile](https://github.com/Dengelberger)
 - [Lauren Brown \_ GitHub Profile](https://github.com/laurenbrown108)
 - [Seychelle Koplik \_ GitHub Profile](https://github.com/SeyKoplik)
+
+## Find your Pet
+
+<a href="https://www.petfinder.com"><img src="https://www.petfinder.com//banner-images/widgets/41.jpg" border="0" alt="Petfinder Logo - 159 by 39 - Petfinder.com" /></a>
