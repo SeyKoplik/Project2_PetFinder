@@ -43,12 +43,12 @@ $(document).ready(function () {
         </ul>
         <div class="card-body m-auto">
         <h5 class="notes-title">My Notes for ${petName}:</h5>
-        <div class="notes-area">${userNotes}</div>
+        <div class="notes-area"><textarea>${userNotes}</textarea></div>
         <div class="card-body m-auto">
           <a href="${petWebLink}" class="card-link"><button type="button" class="btn btn-outline-warning btn-sm">ADOPT INFO!</button></a>
           <button type="button" class="btn btn-outline-danger btn-sm">&hearts;</button>
           <button type="button" class="btn btn-outline-danger btn-sm" id="update${petID}>Update</button>
-          <button type="button" class="btn btn-outline-danger btn-sm" id="delte${petID}>Delete</button>
+          <button type="button" class="btn btn-outline-danger btn-sm" id="delete${petID}>Delete</button>
         </div>
           `);
           
@@ -62,19 +62,40 @@ $(document).ready(function () {
 
 
 //UPDATING THE DATABASE WITH NOTES ADDED BY USER ON FAVORITES PAGE.
-// $.ajax({
-//   url: '/api/favorites/' , method: 'PUT' //need to get user_id from passport to put at end of url stmt before comma 
-// }).then(function (data) {
+$.ajax({
+  url: '/api/favorites/' , method: 'PUT', data:
+  {userNotes: $(".notes-area textarea").val()} 
+}).then(function (data) {
+
   // DATA OUTPUT IS THE RESULT OF MYSQL DATABASE INFORMATION
-  // console.log(data);
-
-
+ console.log(data);
+})
   //DELETING ITEMS FROM THE DATABASE WHEN CHOSEN FOR DELETE BY USER ON FAVORITES PAGE.
 // $.ajax({
-//   url: '/api/favorites/' , method: '' //need to get user_id from passport to put at end of url stmt before comma 
+//   url: '/api/favorites/' , method: 'REMOVE' 
 // }).then(function (data) {
 //   // DATA OUTPUT IS THE RESULT OF MYSQL DATABASE INFORMATION
 //   console.log(data);
 
-}); //==== END DOCUMENT.READY
+// }); //==== END DOCUMENT.READY
 
+//EXAMPLE FROM W3 SCHOOLS
+
+// var mysql = require('mysql');
+
+// var con = mysql.createConnection({
+//   host: "localhost",
+//   user: "yourusername",
+//   password: "yourpassword",
+//   database: "mydb"
+// });
+
+// con.connect(function(err) {
+//   if (err) throw err;
+//   console.log("Connected!");
+//   var sql = "INSERT INTO customers (name, address) VALUES ('Company Inc', 'Highway 37')";
+//   con.query(sql, function (err, result) {
+//     if (err) throw err;
+//     console.log("1 record inserted");
+//   });
+ })
