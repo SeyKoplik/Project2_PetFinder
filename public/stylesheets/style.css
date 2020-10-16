@@ -9,8 +9,31 @@ form.login {
   background-color: whitesmoke;
 }
 
-.four form {
-  margin-top: 40px;
-  margin-left: 420;
-  width: 800;
+body {
+  background-image: url("../img/petPattern.png");
+}
+
+div.testing {
+  border: 1px solid black;
+  margin-top: 10px;
+  background-color: #008ae6;
+}
+
+.navbar {
+  background-color: #005d9a;
+}
+
+div.animalBox {
+  display: none;
+}
+
+.pet-card {
+  width: 250px;
+  height: auto;
+  margin-bottom: 5px;
+}
+
+div.pet-card {
+  display: inline-block;
+  margin-left: 10px;
 }
