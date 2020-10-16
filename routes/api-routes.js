@@ -1,21 +1,25 @@
-require('dotenv').config()
-
 // Requiring our models and passport as we've configured it
 const db = require("../models");
 const passport = require("../config/passport");
-
-var petfinder = require("@petfinder/petfinder-js");
-var client = new petfinder.Client({ apiKey: process.env.PET_FINDER_API_KEY, secret: process.env.PET_FINDER_SECRET});
-
+require('dotenv').config()
+const petfinder = require("@petfinder/petfinder-js");
+const client = new petfinder.Client({ apiKey: process.env.PET_FINDER_API_KEY, secret: process.env.PET_FINDER_SECRET });
 
 module.exports = function (app) {
+  // Using the passport.authenticate middleware with our local strategy.
+  // If the user has valid login credentials, send them to the members page.
+  // Otherwise the user will be sent an error
   app.post("/api/login", passport.authenticate("local"), (req, res) => {
+    // Sending back a password, even a hashed password, isn't a good idea
     res.json({
       email: req.user.email,
       id: req.user.id
     });
   });
 
+  // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
+  // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
+  // otherwise send back an error
   app.post("/api/signup", (req, res) => {
     db.User.create({
       email: req.body.email,
@@ -28,8 +32,39 @@ module.exports = function (app) {
         res.status(401).json(err);
       });
   });
+//Route for connecting favorites and MySQL
+  app.get("/api/favorites", (req, res) => {
+    db.Pet.findAll({
+      where: {
+        UserId: req.user.id,
+      }
+    }).then(function(petData) {
+      res.json(petData)
+    })
+  })
+//Route for updating MySQL from Favorites
+app.get("/api/favorites", (req, res) => {
+  db.Pet.update({
+    where: {
+      UserId: req.user.id,
+    }
+  }).then(function(petData) {
+    res.json(petData)
+  })
+})
 
+//Route for deleting an item from Favorites from MySQL 
+app.get("/api/favorites", (req, res) => {
+  db.Pet.remove({
+    where: {
+      UserId: req.user.id,
+    }
+  }).then(function(petData) {
+    res.json(petData)
+  })
+})
 
+  // Route for logging user out AND REDIRECT TO LOG IN OR SIGN UP PAGE TO GET ACCESS TO PETFINDER
   app.get("/logout", (req, res) => {
     req.logout();
     res.redirect("/");
@@ -50,61 +85,6 @@ module.exports = function (app) {
     }
   });
 
-  // Displays favorite info 
-  app.get("/api/favorites", (req, res) => {
-    if (!req.user) {
-      // The user is not logged in, send back an empty object
-      res.json({});
-    } else {
-      db.Pet.findAll({
-        where: {
-          UserId: req.user.id
-        }
-      }).then(function (faves) {
-        console.log(faves)
-        res.json(faves)
-      });
-    }
-  });
-
-  // Creates new favorite
-  app.post("/api/favorites", (req, res) => {
-    db.Pet.create({
-      name: req.body.name,
-      age: req.body.age,
-      gender: req.body.gender,
-      size: req.body.size,
-      url: req.body.url,
-      img: req.body.img,
-      notes: req.body.notes,
-      UserId: req.user.id
-    }).then(function (newFave) {
-      res.json(newFave)
-    });
-  });
-  //Update the favorites note
-  app.put("api/favorites", (req, res) => {
-    db.Pet.update({
-      note: req.body.note
-    }, {
-      where: {
-        id: req.body.id
-      }
-    }).then(function (newNote) {
-      res.json(newNote)
-    });
-  });
-
-  // Delete the favorites note
-  app.delete("/api/favorites/:id", (req, res) => {
-    db.Pet.destroy({
-      where: {
-        id: req.params.id
-      }
-    }).then(function (deletedFave) {
-      res.json(deletedFave);
-    });
-  });
 
   app.post("/api/search", (req, res) => {
     client.animal.search({
