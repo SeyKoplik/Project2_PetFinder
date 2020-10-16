@@ -37,6 +37,7 @@ $(document).ready(function () {
         var petStatus = data[i].status;
         var petDistance = parseInt(data[i].distance);
         var newPetDistance = petDistance.toFixed(1);
+        var petSize = data[i].size;
         var petGender = data[i].gender;
         var petBreed = data[i].breeds.primary;
         var petMixed = data[i].breeds.mixed;
@@ -61,21 +62,42 @@ $(document).ready(function () {
       <ul class="list-group list-group-flush">
         <li class="list-group-item">Status: ${petStatus}</li>
         <li class="list-group-item">Distance: ${newPetDistance} miles away</li>
+        <li class="list-group-item">Size: ${petSize}</li>
         <li class="list-group-item">Gender: ${petGender}</li>
         <li class="list-group-item">Breed: ${petBreed}</li>
         <li class="list-group-item">Mixed Breed? ${petMix}</li>
       </ul>
       <div class="card-body m-auto">
         <a href="${petWebLink}" class="card-link"><button type="button" class="btn btn-outline-warning btn-sm">ADOPT INFO!</button></a>
-        <button type="button" class="btn btn-outline-danger btn-sm">&hearts;</button>
+        <button type="button" class="btn btn-outline-danger btn-sm" data-name="${petName}" data-gender="${petGender}" data-size="${petSize}" data-url="${petWebLink}" data-img="${petIMGurl} data-notes="Enter notes here">&hearts;</button>
       </div>
         `);
         
         newPetCard.append(newPetPic);
         newPetCard.append(newPetCardBody);
         $(".animalBox").append(newPetCard);
-      }// === END FOR LOOP OF CREATING NEW DIVS FOR EACH PET RESULT
 
+        
+      }// === END FOR LOOP OF CREATING NEW DIVS FOR EACH PET RESULT
+      $(document).on("click", ".btn-outline-danger", function(event){
+        event.preventDefault();
+        var favAnimal = {
+          name: $(this).attr("data-name"),
+          gender: $(this).attr("data-gender"),
+          size: $(this).attr("data-size"),
+          age: $(this).attr("data-age"),
+          img: $(this).attr("data-img"),
+          url: $(this).attr("data-url"),
+          notes: $(this).attr("data-notes"),
+        }
+        $.ajax({
+          url: "/api/favorites/",
+          type: "POST",
+          data: favAnimal
+        }).then(function(data) {
+          console.log(data)
+        })
+      })
     });
   }) //==== END OF BUTTON CLICK OF SEARCH FUNCTION
 
