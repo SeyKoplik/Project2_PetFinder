@@ -29,7 +29,7 @@ module.exports = function (app) {
   //   res.sendFile(path.join(__dirname, "../public/members.html"));
   // });
 
-  // Load search input box page that will render results afterwards
+  // Load index page
   app.get("/members", isAuthenticated, function (req, res) {
     // res.render("index");
     res.sendFile(path.join(__dirname, "../public/main.html"));
@@ -46,5 +46,8 @@ module.exports = function (app) {
     res.redirect("/");
   })
 
-
+  // Render 404 page for any unmatched routes
+  // app.get("*", function (req, res) {
+  //   res.render("404");
+  // });
 };

@@ -86,11 +86,10 @@ $(document).ready(function () {
 
   $(document).on("click", ".btn-outline-danger", function(event){
     event.preventDefault();
-
     var favAnimal = {
       name: $(this).attr("data-name"),
       gender: $(this).attr("data-gender"),
-      breed: $(this).attr("data-breed"),
+      breed: $(this).attr("data-gender"),
       size: $(this).attr("data-size"),
       img: $(this).attr("data-img"),
       url: $(this).attr("data-url"),
