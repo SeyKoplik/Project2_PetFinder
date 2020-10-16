@@ -33,20 +33,21 @@ module.exports = function (app) {
       });
   });
 //Route for connecting favorites and MySQL
-  app.get("/api/favorites", (req, res) => {
-    db.Pet.findAll({
-      where: {
-        UserId: req.user.id,
-      }
-    }).then(function(petData) {
-      res.json(petData)
-    })
-  })
+  // app.get("/api/favorites/", (req, res) => {
+  //   db.Pet.findAll({
+  //     where: {
+  //       UserId: req.user.id,
+  //     }
+  //   }).then(function(petData) {
+  //     res.json(petData)
+  //   })
+  // })
+
 //Route for updating MySQL from Favorites
-app.get("/api/favorites", (req, res) => {
-  db.Pet.update({
+app.put("/api/favorites/:id", (req, res) => {
+  db.Pet.update({notes:req.body.userNotes}, {
     where: {
-      UserId: req.user.id,
+      id:req.params.id,
     }
   }).then(function(petData) {
     res.json(petData)
@@ -64,7 +65,7 @@ app.get("/api/favorites", (req, res) => {
   })
 })
 
-app.get("/api/favorites", (req, res) => {
+app.get("/api/favorites/:id", (req, res) => {
   if (!req.user) {
     // The user is not logged in, send back an empty object
     res.json({});
@@ -74,11 +75,13 @@ app.get("/api/favorites", (req, res) => {
         UserId: req.user.id
       }
     }).then(function (faves) {
+      console.log(`!!!!!!!!!!!!!!!`)
       console.log(faves)
       res.json(faves)
     });
   }
 });
+
 // Creates new favorite
 app.post("/api/favorites", (req, res) => {
   db.Pet.create({
@@ -115,16 +118,15 @@ app.post("/api/favorites", (req, res) => {
     }
   });
 
-
   app.post("/api/search", (req, res) => {
     client.animal.search({
         location: req.body.zipcode,
-        distance: 15,
+        distance: 25,
         type: req.body.animalType,
         gender: req.body.gender,
         age: req.body.age,
         size: req.body.size,
-        page: 1,
+        page: 3,
         limit: 12,
       //change limit when ready.. limit is number of results to appear
       }).then(petData => {
