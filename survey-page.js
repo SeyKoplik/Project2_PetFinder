@@ -1,62 +1,39 @@
-$(document).ready(function() {
-  // jQuery references to survey elements //
-  var surveyName = $("#survey-name"),
-    surveyActivity = $("#survey-activity"),
-    surveyBarking = $("#survey-barking"),
-    surveyKids = $("#survey-kids"),
-    surveyDogs = $("#survey-dogs"),
-    surveyTraining = $("#survey-training"),
-    surveyShedding = $("#survey-shedding"),
-    surveySize = $("#survey-size"),
-    surveyAllergies = $("#survey-allergies");
-
-  $("#survey-submit").on("click", function(event) {
-    event.preventDefault();
-
-    // == Form validation == //
-    function validate() {
-      var isValid = true;
-      $(".form-control").each(function() {
-        if ($(this).val() === "") {
-          isValid = false;
-        }
-      });
-      $(".chosen-select").each(function() {
-        if ($(this).val() === "") {
-          isValid = false;
-        }
-      });
-      if (!isValid) {
-        $("#invalid-alert")
-          .replaceWith(`<div class="alert alert-danger" role="alert">
-            You missed one! Please answer all questions.</div>`);
-      }
-      return isValid;
-    }
-    if (validate()) {
-      let id;
-      $.get("/api/user_data", function(result) {
-        id = result.id;
-        var newSurvey = {
-          UserId: id,
-          name: surveyName.val().trim(),
-          activity_level: surveyActivity.val(),
-          barking_level: surveyBarking.val(),
-          good_with_kids: surveyKids.val(),
-          good_with_dogs: surveyDogs.val(),
-          trainability: surveyTraining.val(),
-          shedding: surveyShedding.val(),
-          size: surveySize.val(),
-          hypoallergenic: surveyAllergies.val(),
-        };
-        submitSurvey(newSurvey);
-      });
-    }
-  });
-
-  function submitSurvey(survey) {
-    $.post("/api/survey/", survey, function() {
-      window.location.href = "results";
-    });
+function checkSearch() {
+  if (
+    document.search.elements[1].selectedIndex == 0 &&
+    document.search.elements[2].value.length < 3
+  ) {
+    alert("Please select an animal and/or a breed to search!");
+    document.search.elements[1].focus();
+    return false;
   }
-});
+  if (document.search.elements[3].value.length < 5) {
+    alert("Please enter your zip or postal code!");
+    document.search.elements[3].focus();
+    return false;
+  }
+  return true;
+}
+var len = 80;
+var p = document.getElementById("sheltername");
+if (p) {
+  var trunc = p.innerHTML;
+  if (trunc.length > len) {
+    /* Truncate the content of the P, then go back to the end of the
+   previous word to ensure that we don't truncate in the middle of
+   a word */
+    trunc = trunc.substring(0, len);
+    trunc = trunc.replace(/\w+$/, "");
+
+    /* Add an ellipses to the end and make it a link that expands
+   the paragraph back to its original size */
+    trunc +=
+      '<a href="#" ' +
+      'onclick="this.parentNode.innerHTML=' +
+      "unescape('" +
+      escape(p.innerHTML) +
+      "');return false;\">" +
+      "...</a>";
+    p.innerHTML = trunc;
+  }
+}

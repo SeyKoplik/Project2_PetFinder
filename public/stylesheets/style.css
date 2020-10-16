@@ -3,8 +3,14 @@ form.login {
   margin-top: 50px;
 }
 
-#signUpBox, #logInBox {
+#signUpBox,
+#logInBox {
   padding: 10px;
   background-color: whitesmoke;
 }
 
+.four form {
+  margin-top: 40px;
+  margin-left: 420;
+  width: 800;
+}

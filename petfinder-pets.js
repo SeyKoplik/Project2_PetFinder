@@ -1,4 +1,5 @@
 $("#petfinder").on("click", function(event) {
+  event.prevent("default");
   $("#petfinder").attr("disabled", true);
   $("#results").empty();
   $(".fixed-bottom").hide();
