@@ -13,20 +13,23 @@
     <a class="navbar-brand" href="/logout">
       Logout
     </a>
-    <a href="/favorites"><button class="btn btn-outline-warning my-2 my-sm-0" type="submit">My Favorites</button></a>
+    <a href="/members"><button class="btn btn-outline-warning my-2 my-sm-0" type="submit">New Search</button></a>
   </nav>
 
 <div class="card mb-3" style="max-width: 540px;" data-id={{this.id}}>
     <div class="row no-gutters">
         <div class="col-md-4">
-            <img src={{this.img}} class="card-img" alt="...">
+            <img src="" class="card-img" alt="...">
         </div>
         <div class="col-md-8">
             <div class="card-body">
-                <h5 class="card-title">{{this.name}}</h5>
+                <h5 class="card-title">name</h5>
                 <div class="row" id="results">
                     <p class="card-text">
-                        Age: {{this.age}} Gender: {{this.gender}} Breed: {{this.breed}} Size: {{this.size}}</p>
+                        Age: age 
+                        Gender: gender 
+                        Breed: breed
+                        Size: size</p>
                 </div>
                 <div class="row" id="resultsURL">
                     <a href={{this.URL}}>More about this animal</a>
@@ -48,8 +51,7 @@
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<script type="text/javascript" src="./js/index.js"></script>
-<script type="text/javascript" src="test.js"></script>
+<script type="text/javascript" src="./js/favorites.js"></script>
 
 </body>
 

@@ -1,9 +1,8 @@
 // Working with main.html file in public folder
 $(document).ready(function () {
-
+  // WHEN SEARCH BUTTON IS CLICKED FROM THE SEARCH INPUT BOX...
   $("#searchBtn").on("click", function () {
     event.preventDefault();
-    // WHEN THE SEARCH BUTTON IS CLICKED...
     // THE SEARCH INPUT BOX DISAPPEARS...
     $('.searchBox').hide();
     // THE ANIMAL INFO BOX APPEARS.
@@ -17,10 +16,12 @@ $(document).ready(function () {
     const size = $("#selectSize option:selected").text();
 
     // CONSOLE.LOG TO CHECK VALUES CHOSEN IS CORRECT
-    console.log(zipcode, animalType, gender, age, size);
+    // console.log(zipcode, animalType, gender, age, size);
 
     $.ajax({
-      url: '/api/search', method: 'POST', data: {
+      url: '/api/search', 
+      method: 'POST', 
+      data: {
         zipcode: zipcode,
         animalType: animalType,
         gender: gender,
@@ -29,7 +30,7 @@ $(document).ready(function () {
       }
     }).then(function (data) {
       // DATA OUTPUT IS THE RESULT OF PETS COMING OUT OF SEARCH PARAMETERS SET FORTH ABOVE
-      console.log(data);
+      // console.log(data);
 
       for (var i = 0; i < data.length; i++) {
         var petIMGurl = data[i].primary_photo_cropped.small;
@@ -83,7 +84,26 @@ $(document).ready(function () {
     });
   }) //==== END OF BUTTON CLICK OF SEARCH FUNCTION
 
+  $(document).on("click", ".btn-outline-danger", function(event){
+    event.preventDefault();
 
+    var favAnimal = {
+      name: $(this).attr("data-name"),
+      gender: $(this).attr("data-gender"),
+      breed: $(this).attr("data-breed"),
+      size: $(this).attr("data-size"),
+      img: $(this).attr("data-img"),
+      url: $(this).attr("data-url"),
+      notes: $(this).attr("data-notes")
+    }
+    $.ajax({
+      url: "/api/favorites/",
+      type: "POST",
+      data: favAnimal
+    }).then(function(data) {
+      console.log(data)
+    })
+  })
 
 }); //==== END DOCUMENT.READY
 

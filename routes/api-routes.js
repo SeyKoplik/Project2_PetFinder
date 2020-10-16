@@ -54,7 +54,6 @@ module.exports = function (app) {
     }
   });
 
-
   app.post("/api/search", (req, res) => {
     client.animal.search({
         location: req.body.zipcode,
@@ -72,7 +71,7 @@ module.exports = function (app) {
       //  console.log(animal);
        console.log(animal.name);
        console.log(animal.gender);
-       console.log(animal.description);
+      //  console.log(animal.description);
        console.log(animal.status);
        let distance = parseInt(animal.distance)
        let newDistance = distance.toFixed(1);
@@ -82,8 +81,7 @@ module.exports = function (app) {
        console.log(`Mixed breed? ${animal.breeds.mixed}`);
       //  console.log(animal.breeds.unknown);
        console.log(animal.url);
-      console.log(`=======================`);
-
+       console.log(`=======================`);
       });
 
       res.json(petData.data.animals);
