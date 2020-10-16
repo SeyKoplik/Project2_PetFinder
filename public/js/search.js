@@ -29,7 +29,7 @@ $(document).ready(function () {
       }
     }).then(function (data) {
       // DATA OUTPUT IS THE RESULT OF PETS COMING OUT OF SEARCH PARAMETERS SET FORTH ABOVE
-      // console.log(data);
+      console.log(data);
 
       for (var i = 0; i < data.length; i++) {
         var petIMGurl = data[i].primary_photo_cropped.small;
@@ -41,6 +41,10 @@ $(document).ready(function () {
         var petBreed = data[i].breeds.primary;
         var petMixed = data[i].breeds.mixed;
         var petWebLink = data[i].url;
+        var petAge = data[i].age;
+        var petGender = data[i].gender;
+        var petSize = data[i].size;
+
 
         var petMix = "";
         if (petMixed === true) {
@@ -49,11 +53,11 @@ $(document).ready(function () {
           petMix = "Nope";
         } else {petMix = "Not sure"}
 
-        var newPetCard = $(`<div class='card pet-card' id='pet-card-${[i]}'>`);
+        var newPetCard = $(`<div class='card pet-card h-100' id='pet-card-${[i]}'>`);
         var newPetPic = $(`<img class='card-img-top img-thumbnail rounded mx-auto d-block' id='pet-pic-${[i]}'>`);
         newPetPic.attr("src", petIMGurl);
 
-        var newPetCardBody = $(`<div class='card-body h-100 pet-${[i]} pet-card-body'>`);
+        var newPetCardBody = $(`<div class='card-body pet-${[i]} pet-card-body'>`);
 
         newPetCardBody.append(`
         <h5 class="card-title">Hello! I'm ${petName}</h5>
@@ -67,7 +71,7 @@ $(document).ready(function () {
       </ul>
       <div class="card-body m-auto">
         <a href="${petWebLink}" class="card-link"><button type="button" class="btn btn-outline-warning btn-sm">ADOPT INFO!</button></a>
-        <button type="button" class="btn btn-outline-danger btn-sm">&hearts;</button>
+        <button type="button" class="btn btn-outline-danger btn-sm" data-name="${petName}" data-age="${petAge}" data-gender="${petGender}" data-breed="${petBreed}" data-size="${petSize}" data-url="${petWebLink}" data-img="${petIMGurl}">&hearts;</button>
       </div>
         `);
         

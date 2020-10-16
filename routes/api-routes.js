@@ -64,7 +64,7 @@ module.exports = function (app) {
         age: req.body.age,
         size: req.body.size,
         page: 1,
-        limit: 9,
+        limit: 12,
       //change limit when ready.. limit is number of results to appear
       }).then(petData => {
       console.log(`=======================`);
