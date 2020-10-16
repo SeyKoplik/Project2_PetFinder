@@ -9,15 +9,15 @@ module.exports = function (sequelize, Sequelize) {
         },
         gender: {
             type: Sequelize.STRING,
-            allowNull: false
+            
         },
         size: {
             type: Sequelize.STRING,
-            allowNull: false
+            
         },
         url: {
             type: Sequelize.STRING,
-            allowNull: false
+            
         },
         img: {
             type: Sequelize.STRING,

@@ -5,7 +5,7 @@ const db = require("../models");
 const passport = require("../config/passport");
 
 var petfinder = require("@petfinder/petfinder-js");
-var client = new petfinder.Client({ apiKey: process.env.PET_FINDER_API_KEY, secret: process.env.PET_FINDER_SECRET });
+var client = new petfinder.Client({ apiKey: process.env.PET_FINDER_API_KEY, secret: process.env.PET_FINDER_SECRET});
 
 
 module.exports = function (app) {
@@ -76,7 +76,8 @@ module.exports = function (app) {
       size: req.body.size,
       url: req.body.url,
       img: req.body.img,
-      notes: req.body.notes
+      notes: req.body.notes,
+      UserId: req.user.id
     }).then(function (newFave) {
       res.json(newFave)
     });
