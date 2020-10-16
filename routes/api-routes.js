@@ -64,6 +64,36 @@ app.get("/api/favorites", (req, res) => {
   })
 })
 
+app.get("/api/favorites", (req, res) => {
+  if (!req.user) {
+    // The user is not logged in, send back an empty object
+    res.json({});
+  } else {
+    db.Pet.findAll({
+      where: {
+        UserId: req.user.id
+      }
+    }).then(function (faves) {
+      console.log(faves)
+      res.json(faves)
+    });
+  }
+});
+// Creates new favorite
+app.post("/api/favorites", (req, res) => {
+  db.Pet.create({
+    name: req.body.name,
+    gender: req.body.gender,
+    size: req.body.size,
+    url: req.body.url,
+    img: req.body.img,
+    notes: req.body.notes,
+    UserId: req.user.id
+  }).then(function (newFave) {
+    res.json(newFave)
+  });
+});
+
   // Route for logging user out AND REDIRECT TO LOG IN OR SIGN UP PAGE TO GET ACCESS TO PETFINDER
   app.get("/logout", (req, res) => {
     req.logout();
@@ -95,7 +125,7 @@ app.get("/api/favorites", (req, res) => {
         age: req.body.age,
         size: req.body.size,
         page: 1,
-        limit: 9,
+        limit: 12,
       //change limit when ready.. limit is number of results to appear
       }).then(petData => {
       console.log(`=======================`);

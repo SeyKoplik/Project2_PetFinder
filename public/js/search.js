@@ -1,9 +1,8 @@
 // Working with main.html file in public folder
 $(document).ready(function () {
-
+  // WHEN SEARCH BUTTON IS CLICKED FROM THE SEARCH INPUT BOX...
   $("#searchBtn").on("click", function () {
     event.preventDefault();
-    // WHEN THE SEARCH BUTTON IS CLICKED...
     // THE SEARCH INPUT BOX DISAPPEARS...
     $('.searchBox').hide();
     // THE ANIMAL INFO BOX APPEARS.
@@ -17,10 +16,12 @@ $(document).ready(function () {
     const size = $("#selectSize option:selected").text();
 
     // CONSOLE.LOG TO CHECK VALUES CHOSEN IS CORRECT
-    console.log(zipcode, animalType, gender, age, size);
+    // console.log(zipcode, animalType, gender, age, size);
 
     $.ajax({
-      url: '/api/search', method: 'POST', data: {
+      url: '/api/search', 
+      method: 'POST', 
+      data: {
         zipcode: zipcode,
         animalType: animalType,
         gender: gender,
@@ -37,11 +38,14 @@ $(document).ready(function () {
         var petStatus = data[i].status;
         var petDistance = parseInt(data[i].distance);
         var newPetDistance = petDistance.toFixed(1);
-        var petSize = data[i].size;
         var petGender = data[i].gender;
         var petBreed = data[i].breeds.primary;
         var petMixed = data[i].breeds.mixed;
         var petWebLink = data[i].url;
+        var petAge = data[i].age;
+        var petGender = data[i].gender;
+        var petSize = data[i].size;
+
 
         var petMix = "";
         if (petMixed === true) {
@@ -50,11 +54,11 @@ $(document).ready(function () {
           petMix = "Nope";
         } else {petMix = "Not sure"}
 
-        var newPetCard = $(`<div class='card pet-card' id='pet-card-${[i]}'>`);
+        var newPetCard = $(`<div class='card pet-card h-100' id='pet-card-${[i]}'>`);
         var newPetPic = $(`<img class='card-img-top img-thumbnail rounded mx-auto d-block' id='pet-pic-${[i]}'>`);
         newPetPic.attr("src", petIMGurl);
 
-        var newPetCardBody = $(`<div class='card-body h-100 pet-${[i]} pet-card-body'>`);
+        var newPetCardBody = $(`<div class='card-body pet-${[i]} pet-card-body'>`);
 
         newPetCardBody.append(`
         <h5 class="card-title">Hello! I'm ${petName}</h5>
@@ -62,46 +66,44 @@ $(document).ready(function () {
       <ul class="list-group list-group-flush">
         <li class="list-group-item">Status: ${petStatus}</li>
         <li class="list-group-item">Distance: ${newPetDistance} miles away</li>
-        <li class="list-group-item">Size: ${petSize}</li>
         <li class="list-group-item">Gender: ${petGender}</li>
         <li class="list-group-item">Breed: ${petBreed}</li>
         <li class="list-group-item">Mixed Breed? ${petMix}</li>
       </ul>
       <div class="card-body m-auto">
         <a href="${petWebLink}" class="card-link"><button type="button" class="btn btn-outline-warning btn-sm">ADOPT INFO!</button></a>
-        <button type="button" class="btn btn-outline-danger btn-sm" data-name="${petName}" data-gender="${petGender}" data-size="${petSize}" data-url="${petWebLink}" data-img="${petIMGurl} data-notes="Enter notes here">&hearts;</button>
+        <button type="button" class="btn btn-outline-danger btn-sm" data-name="${petName}" data-age="${petAge}" data-gender="${petGender}" data-breed="${petBreed}" data-size="${petSize}" data-url="${petWebLink}" data-img="${petIMGurl}">&hearts;</button>
       </div>
         `);
         
         newPetCard.append(newPetPic);
         newPetCard.append(newPetCardBody);
         $(".animalBox").append(newPetCard);
-
-        
       }// === END FOR LOOP OF CREATING NEW DIVS FOR EACH PET RESULT
-      $(document).on("click", ".btn-outline-danger", function(event){
-        event.preventDefault();
-        var favAnimal = {
-          name: $(this).attr("data-name"),
-          gender: $(this).attr("data-gender"),
-          size: $(this).attr("data-size"),
-          age: $(this).attr("data-age"),
-          img: $(this).attr("data-img"),
-          url: $(this).attr("data-url"),
-          notes: $(this).attr("data-notes"),
-        }
-        $.ajax({
-          url: "/api/favorites/",
-          type: "POST",
-          data: favAnimal
-        }).then(function(data) {
-          console.log(data)
-        })
-      })
+
     });
   }) //==== END OF BUTTON CLICK OF SEARCH FUNCTION
 
-
+  $(document).on("click", ".btn-outline-danger", function(event){
+    event.preventDefault();
+    
+    var favAnimal = {
+      name: $(this).attr("data-name"),
+      gender: $(this).attr("data-gender"),
+      breed: $(this).attr("data-gender"),
+      size: $(this).attr("data-size"),
+      img: $(this).attr("data-img"),
+      url: $(this).attr("data-url"),
+      notes: $(this).attr("data-notes")
+    }
+    $.ajax({
+      url: "/api/favorites/",
+      type: "POST",
+      data: favAnimal
+    }).then(function(data) {
+      console.log(data)
+    })
+  })
 
 }); //==== END DOCUMENT.READY
 
