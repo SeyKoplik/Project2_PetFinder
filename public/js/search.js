@@ -86,6 +86,7 @@ $(document).ready(function () {
 
   $(document).on("click", ".btn-outline-danger", function(event){
     event.preventDefault();
+    
     var favAnimal = {
       name: $(this).attr("data-name"),
       gender: $(this).attr("data-gender"),
