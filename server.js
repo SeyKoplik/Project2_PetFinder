@@ -43,7 +43,3 @@ db.sequelize.sync({}).then(() => {
   });
 });
 
-/*API KEY
-7582194e107a16e1749aefa7f31faf84-us2
-*/
-// List id   e93bb7ad7b
