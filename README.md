@@ -1,5 +1,5 @@
-PetFinder App
-changing to a new name once project topic is finalized	
+# PetFinder App
+	
   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
   ## Description 
