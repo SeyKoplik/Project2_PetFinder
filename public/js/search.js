@@ -7,20 +7,21 @@ $(document).ready(function () {
     $('.searchBox').hide();
     // THE ANIMAL INFO BOX APPEARS.
     $('.animalBox').show();
+    $('.searchAgain').show();
 
     // GETTING ALL INPUT VALUES & SETTING THEM AS VARIABLES TO BE USED TO MAKE PETFINDER API CALL
     const zipcode = $("#zipCode").val().trim();
     const animalType = $('input[name="petType"]:checked').val();
     const gender = $('input[name="gender"]:checked').val();
-    const age = $("#selectAge option:selected").text();
-    const size = $("#selectSize option:selected").text();
+    const age = $("#selectAge option:selected").val();
+    const size = $("#selectSize option:selected").val();
 
     // CONSOLE.LOG TO CHECK VALUES CHOSEN IS CORRECT
     // console.log(zipcode, animalType, gender, age, size);
 
     $.ajax({
-      url: '/api/search', 
-      method: 'POST', 
+      url: '/api/search',
+      method: 'POST',
       data: {
         zipcode: zipcode,
         animalType: animalType,
@@ -33,7 +34,12 @@ $(document).ready(function () {
       // console.log(data);
 
       for (var i = 0; i < data.length; i++) {
-        var petIMGurl = data[i].primary_photo_cropped.small;
+        var petIMGurl = "";
+        if (data[i].primary_photo_cropped === null) {
+          petIMGurl = 'https://via.placeholder.com/150/008ae6/FFF/?text=No+Photo+Available';
+        } else {
+          petIMGurl = data[i].primary_photo_cropped.small;
+        }
         var petName = data[i].name;
         var petStatus = data[i].status;
         var petDistance = parseInt(data[i].distance);
@@ -43,16 +49,14 @@ $(document).ready(function () {
         var petMixed = data[i].breeds.mixed;
         var petWebLink = data[i].url;
         var petAge = data[i].age;
-        var petGender = data[i].gender;
         var petSize = data[i].size;
-
 
         var petMix = "";
         if (petMixed === true) {
           petMix = "Yes";
         } else if (petMixed === false) {
           petMix = "Nope";
-        } else {petMix = "Not sure"}
+        } else { petMix = "Not sure" }
 
         var newPetCard = $(`<div class='card pet-card h-100' id='pet-card-${[i]}'>`);
         var newPetPic = $(`<img class='card-img-top img-thumbnail rounded mx-auto d-block' id='pet-pic-${[i]}'>`);
@@ -75,7 +79,7 @@ $(document).ready(function () {
         <button type="button" class="btn btn-outline-danger btn-sm" data-name="${petName}" data-age="${petAge}" data-gender="${petGender}" data-breed="${petBreed}" data-size="${petSize}" data-url="${petWebLink}" data-img="${petIMGurl}">&hearts;</button>
       </div>
         `);
-        
+
         newPetCard.append(newPetPic);
         newPetCard.append(newPetCardBody);
         $(".animalBox").append(newPetCard);
@@ -84,13 +88,14 @@ $(document).ready(function () {
     });
   }) //==== END OF BUTTON CLICK OF SEARCH FUNCTION
 
-  $(document).on("click", ".btn-outline-danger", function(event){
+  $(document).on("click", ".btn-outline-danger", function (event) {
     event.preventDefault();
-    
+
     var favAnimal = {
       name: $(this).attr("data-name"),
       gender: $(this).attr("data-gender"),
-      breed: $(this).attr("data-gender"),
+      breed: $(this).attr("data-breed"),
+      age: $(this).attr("data-age"),
       size: $(this).attr("data-size"),
       img: $(this).attr("data-img"),
       url: $(this).attr("data-url"),
@@ -100,7 +105,7 @@ $(document).ready(function () {
       url: "/api/favorites/",
       type: "POST",
       data: favAnimal
-    }).then(function(data) {
+    }).then(function (data) {
       console.log(data)
     })
   })
