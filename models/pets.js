@@ -8,16 +8,16 @@ module.exports = function (sequelize, Sequelize) {
             type: Sequelize.STRING,
         },
         gender: {
+            type: Sequelize.STRING,    
+        },
+        breed: {
             type: Sequelize.STRING,
-            
         },
         size: {
             type: Sequelize.STRING,
-            
         },
         url: {
             type: Sequelize.STRING,
-            
         },
         img: {
             type: Sequelize.STRING,
