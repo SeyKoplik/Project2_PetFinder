@@ -1,6 +1,6 @@
 # PetFinder App
 	
-  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+  [![License: ISC](https://img.shields.io/badge/License-ISC-yellow.svg)](https://opensource.org/licenses/ISC)
 
   ## Description 
 
@@ -30,9 +30,9 @@
 
   ## License 
 
-  This project is licensed under the MIT license.
+  This project is licensed under the ISC license.
 
-  Click here for the MIT license: https://choosealicense.com/licenses/mit/
+  Click here for the ISC license: https://choosealicense.com/licenses/isc/
 
   ## Contributing 
 
