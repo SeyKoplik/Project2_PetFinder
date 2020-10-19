@@ -10,9 +10,11 @@
 
   * [Installation](#installation)
   * [Usage](#usage) 
+  * [Preview](#preview)
   * [License](#license)
   * [Contributing](#contributing)
   * [Tests](#tests)
+  * [Links](#links)
   * [Questions](#questions)
 
 
@@ -27,6 +29,10 @@
   The user can then click on a provided link to go get more information about a pet, or they can click on a button to save a pet to their favorites library.  The user can navigate to the favorites library and see all the pets they have saved, and add personal notes to their pet information and update the database by a click of a button.
 
   In future development the user will be able to delete pets from their favorites library.
+
+  ## Preview
+
+  <img src="./public/img/petfind-app.png" width="50%">
 
   ## License 
 
@@ -46,6 +52,13 @@
 
   We have no testing criteria at this time, although we used seeds for our database to test code during development.
 
+  ## Links
+
+  https://petfind-app.herokuapp.com/
+
+  - Demo User - test@abc.com
+  - Demo Password - adoptdontshop
+
   ## Questions 
 
   Questions or comments about this README.md file? Contact us at the following emails, or visit our Github repository at SeyKoplik/PetFinder.
@@ -56,4 +69,3 @@
         Seychelle Koplik    sey.koplik@gmail.com
 
 
-0 comments on commit 939ae3f
