@@ -36,7 +36,7 @@ $(document).ready(() => {
   }
 
   function handleLoginErr(err) {
-    $("#alert .msg").text(err.responseJSON);
+    $("#alert .msg").text('Sorry! Looks like this person already exists in the system!');
     $("#alert").fadeIn(500);
   }
 });
