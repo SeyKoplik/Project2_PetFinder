@@ -47,7 +47,7 @@ $(document).ready(function () {
         <div class="notes-area"><textarea>${userNotes}</textarea></div>
         <div class="card-body m-auto">
           <button type="button" class="btn btn-outline-danger btn-sm update" data-id="${petID}">Update Note</button>
-
+          <button type="button" class="btn btn-outline-danger btn-sm delete" data-id="${petID}">Remove Favorite</button>
         </div>
           `);
 
@@ -66,14 +66,29 @@ $(document).ready(function () {
     // console.log($(this).parent().prev().find("textarea").val());
     //UPDATING THE DATABASE WITH NOTES ADDED BY USER ON FAVORITES PAGE.
     $.ajax({
-      url: '/api/favorites/' + $(this).attr("data-id"), method: 'PUT', data:
+      url: '/api/favorites/' + $(this).attr("data-id"),
+      method: 'PUT',
+      data:
         { userNotes: $(this).parent().prev().find("textarea").val() }
     }).then(function (data) {
       // DATA OUTPUT IS THE RESULT OF MYSQL DATABASE INFORMATION
       console.log(data);
-    })
+    });
 
-  })
+  });
+
+  $(document).on("click", ".delete", function (event) {
+    event.preventDefault();
+    console.log("delete")
+    $.ajax({
+      method: 'DELETE',
+      url: "/api/favorites/" + $(this).attr("data-id"),
+    }).then(function (data) {
+      location.reload();
+      console.log(data)
+    });
+  });
+
 
   //DELETING ITEMS FROM THE DATABASE WHEN CHOSEN FOR DELETE BY USER ON FAVORITES PAGE.
   // $.ajax({

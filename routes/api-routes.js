@@ -55,10 +55,10 @@ app.put("/api/favorites/:id", (req, res) => {
 })
 
 //Route for deleting an item from Favorites from MySQL 
-app.get("/api/favorites", (req, res) => {
-  db.Pet.remove({
+app.delete("/api/favorites/:id", (req, res) => {
+  db.Pet.destroy({
     where: {
-      UserId: req.user.id,
+      id: req.params.id,
     }
   }).then(function(petData) {
     res.json(petData)
